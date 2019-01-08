@@ -1,0 +1,67 @@
+.mean_line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.mean_dot {
+  fill: red;
+  opacity: 0.9;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 400px;
+  height: auto;
+  padding: 5px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+body {
+  font: 12px sans-serif;
+  color: black;
+}
+
+a:link {
+  text-decoration: none;
+  font: 12px sans-serif;
+  color: steelblue;
+}
+
+a:visited {
+  text-decoration: none;
+  color: steelblue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.bubbles:link {
+  font: 16px sans-serif;
+}
+
+a.bubbles:visited {
+  font: 16px sans-serif;
+}
+
+a.bubbles:hover {
+  text-decoration: underline;
+  font: 16px sans-serif;
+}
+
+p.bubbles {
+  font: 14px sans-serif;
+  color: black;
+}
+
+table{
+  text-align: center;
+  border-spacing: 20px 0px;
+}
