@@ -36,32 +36,43 @@ var svg = d3.select("body").append("svg")
 d3.csv(data_file, function(error, data) {
   if (error) throw error;
 
-  // all data is now imported. For numerical variables, format the data using "+"
+  // format the data
   data.forEach(function(d) {
-      d.unit = +d.unit;
+      d.time = +d.unit;
       d.engagement_mean = +d.engagement_mean;
   });
-  // print the first row of the data in the browser's console to check whether
-  // importing has gone ok
-  console.log(data[0]);
-  console.log(data[1]);
+
   // scale the range of the data
-  // x.domain([1, 312])
-  x.domain([-2, d3.max(data, function(d) { return d.unit; })]);
-  // y.domain([0, d3.max(data, function(d) { return d.engagement_mean; })]);
-  y.domain([1, 8])
+  x.domain([1, 312])
+  // x.domain([1, d3.max(data, function(d) { return d.unit; })]);
+  y.domain([0, d3.max(data, function(d) { return d.engagement_mean; })]);
 
   // set the gradient
   svg.append("linearGradient")
     .attr("id", "area-gradient")
     .attr("gradientUnits", "userSpaceOnUse")
     .attr("x1", x(0)).attr("y1", y(0))
-    .attr("x2", x(d3.max(data, function(d) { return d.unit; }))).attr("y2", y(0))
+    .attr("x2", x(312)).attr("y2", y(0))
   .selectAll("stop")
-    .data(data)
+    .data([
+      {offset: "0.32051282051282%", color: "#FABB00"},
+      {offset: "1.28205128205128%", color: "#F1E300"},
+      {offset: "10.5769230769231%", color: "#C6DB00"},
+      {offset: "16.9871794871795%", color: "#D3DE00"},
+      {offset: "22.4358974358974%", color: "#F8AA00"},
+      {offset: "25.6410256410256%", color: "#D3DE00"},
+      {offset: "31.0897435897436%", color: "#FFE600"},
+      {offset: "34.6153846153846%", color: "#C6DB00"},
+      {offset: "37.1794871794872%", color: "#FFE600"},
+      {offset: "45.5128205128205%", color: "#FABB00"},
+      {offset: "46.474358974359%", color: "#E4E100"},
+      {offset: "85.5769230769231%", color: "#FDD500"},
+      {offset: "97.4358974358974%", color: "#A8D600"},
+      {offset: "100%", color: "#FBC800"},
+    ])
   .enter().append("stop")
     .attr("offset", function(d) { return d.offset; })
-    .attr("stop-color", function(d) { return d.mood_colour; });
+    .attr("stop-color", function(d) { return d.color; });
 
   // // Add the area.
   // svg.append("path")
@@ -86,12 +97,11 @@ d3.csv(data_file, function(error, data) {
   // add the X Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .attr("class", "axisGrey")
       .call(d3.axisBottom(x));
         //.tickFormat(d3.timeFormat("%M:%S")));
 
   // add the Y Axis
   svg.append("g")
-      .attr("class", "axisGrey")
       .call(d3.axisLeft(y));
+
 });
