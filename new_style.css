@@ -14,6 +14,12 @@
   stroke-width: 18px;
 }
 
+.line3 {
+  fill: none;
+  stroke: url(#area-gradient);
+  /* stroke: steelblue; */
+}
+
 .area2 {
   fill: url(#area-gradient);
   stroke-width: 0px;

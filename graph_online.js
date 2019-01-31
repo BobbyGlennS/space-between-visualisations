@@ -4,10 +4,10 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     height = 500 - margin.top - margin.bottom;
 
 // parse the date / time
-// var parseTime = d3.timeParse("%M:%S");
+var parseTime = d3.timeParse("%M:%S");
 
 // set the ranges
-var x = d3.scaleLinear().range([0, width]);
+var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
 
 // define the area
@@ -19,7 +19,7 @@ var y = d3.scaleLinear().range([height, 0]);
 
 // define the line
 var valueline = d3.line()
-    .x(function(d) { return x(d.unit); })
+    .x(function(d) { return x(d.time); })
     .y(function(d) { return y(d.engagement_mean); })
 
 // append the svg object to the body of the page
@@ -38,18 +38,17 @@ d3.csv(data_file, function(error, data) {
 
   // all data is now imported. For numerical variables, format the data using "+"
   data.forEach(function(d) {
+      d.time = parseTime(d.time);
+      d.laughter_start = parseTime(d.laughter_start);
       d.unit = +d.unit;
       d.engagement_mean = +d.engagement_mean;
-      d.laughter_start = +d.laughter_start;
-      d.laughter_duration = +d.laughter_duration;
+      d.laughter_duration = parseTime(d.laughter_duration);
   });
   // print the first row of the data in the browser's console to check whether
   // importing has gone ok
-  // console.log(data[0]);
   // console.log(data[1]);
   // scale the range of the data
-  // x.domain([1, 312])
-  x.domain([-2, d3.max(data, function(d) { return d.unit; })]);
+  x.domain(d3.extent(data, function(d) { return d.time; }));
   // y.domain([0, d3.max(data, function(d) { return d.engagement_mean; })]);
   y.domain([0, 8])
 
@@ -71,13 +70,13 @@ d3.csv(data_file, function(error, data) {
       .attr("y", height - 20)
       .attr("height", 20)
       .attr("width", function(d) { return x(d.laughter_duration)})
-
-  // set the gradient
+  //
+  // // set the gradient
   svg.append("linearGradient")
     .attr("id", "area-gradient")
     .attr("gradientUnits", "userSpaceOnUse")
-    .attr("x1", x(0)).attr("y1", y(0))
-    .attr("x2", x(d3.max(data, function(d) { return d.unit; }))).attr("y2", y(0))
+    .attr("x1", x(d3.min(data, function(d) { return d.time; }))).attr("y1", y(0))
+    .attr("x2", x(d3.max(data, function(d) { return d.time; }))).attr("y2", y(0))
   .selectAll("stop")
     .data(data)
   .enter().append("stop")
@@ -93,26 +92,59 @@ d3.csv(data_file, function(error, data) {
   // add the valueline path.
   svg.append("path")
       .data([data])
-      .attr("class", "line2")
+      .attr("class", "line3")
+      .style("stroke-width", 18)
       .attr("d", valueline);
+
+  // when the input range changes update the circle
+  d3.select("#w_line").on("input", function() {
+      update(+this.value);
+    });
+
+  update(18);
+
+  // update the elements
+  function update(w_line) {
+
+    // adjust the text on the range slider
+    d3.select("#w_line-value").text(w_line);
+    d3.select("#w_line").property("value", w_line);
+
+    // update the circle radius
+    svg.selectAll("path")
+      .style("stroke-width", w_line);
+  }
 
   // add points
   svg.selectAll("dot")
       .data(data)
     .enter().append("circle")
-      .attr("r", 3)
-      .attr("cx", function(d) { return x(d.unit)})
+      .attr("r", 4)
+      .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
+      .on("mouseover", function (d) {
+        d3.select(this)
+          .transition()
+          .duration(200)
+          .attr("r", 8);
+        })
+      .on("mouseout", function(d) {
+        d3.select(this)
+          .transition()
+          .duration(200)
+          .attr("r", 4);
+      });
 
   // add the X Axis
-  svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .attr("class", "axisGrey")
-      .call(d3.axisBottom(x));
-        //.tickFormat(d3.timeFormat("%M:%S")));
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr("class", "axisGrey")
+        .call(d3.axisBottom(x)
+          .tickFormat(d3.timeFormat("%M:%S")))
 
   // add the Y Axis
   svg.append("g")
+      .attr("transform", "translate(" + -10 + ",0)")
       .attr("class", "axisGrey")
       .call(d3.axisLeft(y)
               .ticks(8));
