@@ -40,16 +40,37 @@ d3.csv(data_file, function(error, data) {
   data.forEach(function(d) {
       d.unit = +d.unit;
       d.engagement_mean = +d.engagement_mean;
+      d.laughter_start = +d.laughter_start;
+      d.laughter_duration = +d.laughter_duration;
   });
   // print the first row of the data in the browser's console to check whether
   // importing has gone ok
-  console.log(data[0]);
-  console.log(data[1]);
+  // console.log(data[0]);
+  // console.log(data[1]);
   // scale the range of the data
   // x.domain([1, 312])
   x.domain([-2, d3.max(data, function(d) { return d.unit; })]);
   // y.domain([0, d3.max(data, function(d) { return d.engagement_mean; })]);
-  y.domain([1, 8])
+  y.domain([0, 8])
+
+  // add laughter
+  svg.selectAll("laugh_background")
+      .data(data)
+    .enter().append("rect")
+      .style("fill", "#F0F0F0")
+      .attr("x", function(d) { return x(d.laughter_start)})
+      .attr("y", 0)
+      .attr("height", height)
+      .attr("width", function(d) { return x(d.laughter_duration)})
+
+  svg.selectAll("laugh_colour")
+      .data(data)
+    .enter().append("rect")
+      .style("fill", function (d) { return d.type_colour})
+      .attr("x", function(d) { return x(d.laughter_start)})
+      .attr("y", height - 20)
+      .attr("height", 20)
+      .attr("width", function(d) { return x(d.laughter_duration)})
 
   // set the gradient
   svg.append("linearGradient")
@@ -75,7 +96,7 @@ d3.csv(data_file, function(error, data) {
       .attr("class", "line2")
       .attr("d", valueline);
 
-  // dad points
+  // add points
   svg.selectAll("dot")
       .data(data)
     .enter().append("circle")
@@ -93,5 +114,6 @@ d3.csv(data_file, function(error, data) {
   // add the Y Axis
   svg.append("g")
       .attr("class", "axisGrey")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(y)
+              .ticks(8));
 });
