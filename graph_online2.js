@@ -26,7 +26,7 @@ var valueline = d3.line()
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("body").append("svg")
+var svg = d3.select(area_id).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -41,7 +41,6 @@ d3.csv(data_file, function(error, data) {
   data.forEach(function(d) {
       d.time = parseTime(d.time);
       d.laughter_start = parseTime(d.laughter_start);
-      d.unit = +d.unit;
       d.engagement_mean = +d.engagement_mean;
       d.laughter_duration = parseTime(d.laughter_duration);
   });
@@ -71,8 +70,8 @@ d3.csv(data_file, function(error, data) {
       .attr("y", height - 20)
       .attr("height", 20)
       .attr("width", function(d) { return x(d.laughter_duration)})
-  //
-  // // set the gradient
+
+  // set the gradient
   svg.append("linearGradient")
     .attr("id", "area-gradient")
     .attr("gradientUnits", "userSpaceOnUse")
@@ -101,28 +100,8 @@ d3.csv(data_file, function(error, data) {
   // add the valueline path.
   svg.append("path")
       .data([data])
-      .attr("class", "line3")
-      .style("stroke-width", 18)
+      .attr("class", "line2")
       .attr("d", valueline);
-
-  // when the input range changes update the circle
-  d3.select("#w_line").on("input", function() {
-      update(+this.value);
-    });
-
-  update(18);
-
-  // update the elements
-  function update(w_line) {
-
-    // adjust the text on the range slider
-    d3.select("#w_line-value").text(w_line);
-    d3.select("#w_line").property("value", w_line);
-
-    // update the circle radius
-    svg.selectAll("path")
-      .style("stroke-width", w_line);
-  }
 
   // add points
   svg.selectAll("dot")
