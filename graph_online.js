@@ -19,6 +19,7 @@ var y = d3.scaleLinear().range([height, 0]);
 
 // define the line
 var valueline = d3.line()
+    .curve(d3.curveCardinal.tension(0.9))
     .x(function(d) { return x(d.time); })
     .y(function(d) { return y(d.engagement_mean); })
 
@@ -88,6 +89,14 @@ d3.csv(data_file, function(error, data) {
   //     .data([data])
   //     .attr("class", "area2")
   //     .attr("d", area);
+
+  svg.selectAll("dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("fill", "url(#area-gradient)")
+      .attr("r", 9)
+      .attr("cx", function(d) { return x(d.time)})
+      .attr("cy", function(d) { return y(d.engagement_mean)})
 
   // add the valueline path.
   svg.append("path")
