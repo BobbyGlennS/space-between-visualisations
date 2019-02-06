@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <title>All Visualisations</title>
   <link rel="stylesheet" href="new_style.css">
-</head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  </head>
 
 <body>
   <!-- load the d3.js library -->
@@ -13,52 +14,70 @@
 
   <!-- GRAPH 1 -->
   <h1>NL Group 1</h1>
-  <div id="area1"></div>
+  <!-- <div id="area1"></div> -->
+  <svg id="area1" width="1000" height="500"></svg>
 
   <script type = "text/javascript">
     data_file = "nl_group1.csv"
     area_id = "#area1"
+    gradient_id = "gradient_id1"
   </script>
 
-  <script src="graph_online2.js"></script><br>
+  <script src="graph_online.js"></script><br>
   <br>
 
   <!-- GRAPH 2 -->
   <h1>NL Group 2</h1>
-  <div id="area2"></div>
+  <!-- <div id="area2"></div>-->
+  <svg id="area2" width="1000" height="500"></svg>
 
   <script type = "text/javascript">
     data_file = "nl_group2.csv"
     area_id = "#area2"
+    gradient_id = "gradient_id2"
   </script>
 
-  <script src="graph_online2.js"></script><br>
+  <script src="graph_online.js"></script><br>
   <br>
 
   <!-- GRAPH 3 -->
   <h1>UK Group 1</h1>
-  <div id="area3"></div>
+  <!-- <div id="area4"></div> -->
+  <svg id="area3" width="1000" height="500"></svg>
 
   <script type = "text/javascript">
     data_file = "uk_group1.csv"
     area_id = "#area3"
+    gradient_id = "gradient_id3"
   </script>
 
-  <script src="graph_online2.js"></script><br>
+  <script src="graph_online.js"></script><br>
   <br>
 
   <!-- GRAPH 4 -->
-  <h1>UK Group 4</h1>
-  <div id="area4"></div>
+  <h1>UK Group 2</h1>
+  <!-- <div id="area4"></div> -->
+  <svg id="area4" width="1000" height="500"></svg>
 
   <script type = "text/javascript">
     data_file = "uk_group2.csv"
     area_id = "#area4"
+    gradient_id = "gradient_id4"
   </script>
 
-  <script src="graph_online2.js"></script><br>
+  <script src="graph_online.js"></script><br>
   <br>
 
+  <svg id="area5" width="0" height="0"></svg>
+
+  <script type = "text/javascript">
+    data_file = "uk_group2.csv"
+    area_id = "#area5"
+    gradient_id = "gradient_id5"
+  </script>
+
+  <script src="graph_online.js"></script><br>
+  <br>
   <!-- Index -->
   See here for the other visualisations:&nbsp;&nbsp;
   <a href = "nl_group1.html">NL Group 1</a>&nbsp;&nbsp;

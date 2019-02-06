@@ -26,7 +26,7 @@ var valueline = d3.line()
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("body").append("svg")
+var svg2 = d3.select(area_id).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -41,7 +41,6 @@ d3.csv(data_file, function(error, data) {
   data.forEach(function(d) {
       d.time = parseTime(d.time);
       d.laughter_start = parseTime(d.laughter_start);
-      d.unit = +d.unit;
       d.engagement_mean = +d.engagement_mean;
       d.laughter_duration = parseTime(d.laughter_duration);
   });
@@ -54,7 +53,7 @@ d3.csv(data_file, function(error, data) {
   y.domain([0, 8])
 
   // add laughter
-  svg.selectAll("laugh_background")
+  svg2.selectAll("laugh_background")
       .data(data)
     .enter().append("rect")
       .style("fill", "#F0F0F0")
@@ -63,7 +62,7 @@ d3.csv(data_file, function(error, data) {
       .attr("height", height)
       .attr("width", function(d) { return x(d.laughter_duration)})
 
-  svg.selectAll("laugh_colour")
+  svg2.selectAll("laugh_colour")
       .data(data)
     .enter().append("rect")
       .style("fill", function (d) { return d.type_colour})
@@ -71,10 +70,10 @@ d3.csv(data_file, function(error, data) {
       .attr("y", height - 20)
       .attr("height", 20)
       .attr("width", function(d) { return x(d.laughter_duration)})
-  //
-  // // set the gradient
-  svg.append("linearGradient")
-    .attr("id", "area-gradient")
+
+  // set the gradient
+  svg2.append("linearGradient")
+    .attr("id", gradient_id)
     .attr("gradientUnits", "userSpaceOnUse")
     .attr("x1", x(d3.min(data, function(d) { return d.time; }))).attr("y1", y(0))
     .attr("x2", x(d3.max(data, function(d) { return d.time; }))).attr("y2", y(0))
@@ -85,50 +84,34 @@ d3.csv(data_file, function(error, data) {
     .attr("stop-color", function(d) { return d.mood_colour; });
 
   // // Add the area.
-  // svg.append("path")
+  // svg2.append("path")
   //     .data([data])
   //     .attr("class", "area2")
   //     .attr("d", area);
 
-  svg.selectAll("dot")
+  svg2.selectAll("dot")
       .data(data)
     .enter().append("circle")
-      .attr("fill", "url(#area-gradient)")
-      .attr("r", 9)
+      .attr("fill", "url(#" + gradient_id + ")")
+      .attr("r", 8)
       .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
 
   // add the valueline path.
-  svg.append("path")
+  svg2.append("path")
       .data([data])
-      .attr("class", "line3")
-      .style("stroke-width", 18)
+      //.attr("class", "line4")
+      .style("fill", "none")
+      .style("stroke", "url(#" + gradient_id + ")")
+      .style("stroke-width", "12px")
       .attr("d", valueline);
 
-  // when the input range changes update the circle
-  d3.select("#w_line").on("input", function() {
-      update(+this.value);
-    });
-
-  update(18);
-
-  // update the elements
-  function update(w_line) {
-
-    // adjust the text on the range slider
-    d3.select("#w_line-value").text(w_line);
-    d3.select("#w_line").property("value", w_line);
-
-    // update the circle radius
-    svg.selectAll("path")
-      .style("stroke-width", w_line);
-  }
-
   // add points
-  svg.selectAll("dot")
+  svg2.selectAll("dot")
       .data(data)
     .enter().append("circle")
       .attr("r", 4)
+      .attr("fill", "#333333")
       .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
       .on("mouseover", function (d) {
@@ -145,14 +128,14 @@ d3.csv(data_file, function(error, data) {
       });
 
   // add the X Axis
-    svg.append("g")
+    svg2.append("g")
         .attr("transform", "translate(0," + height + ")")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%M:%S")))
 
   // add the Y Axis
-  svg.append("g")
+  svg2.append("g")
       .attr("transform", "translate(" + -10 + ",0)")
       .attr("class", "axisGrey")
       .call(d3.axisLeft(y)

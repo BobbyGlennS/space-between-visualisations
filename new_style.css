@@ -1,28 +1,33 @@
-.line {
-  fill: none;
-  stroke: black;
-  stroke-width: 2px;
+h1 {
+  font-family: 'Roboto', sans-serif;
+  color: #333333;
 }
 
-.area {
-  fill: lightsteelblue;
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #333333;
 }
 
-.line2 {
-  fill: none;
-  stroke: url(#area-gradient);
-  stroke-width: 18px;
+a:link {
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #F59100;
 }
 
-.line3 {
-  fill: none;
-  stroke: url(#area-gradient);
-  /* stroke: steelblue; */
+a:visited {
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #F59100;
 }
 
-.area2 {
-  fill: url(#area-gradient);
-  stroke-width: 0px;
+a:hover {
+  text-decoration: underline;
 }
 
 .axisGrey line {
@@ -35,26 +40,9 @@
 
 .axisGrey text {
   fill: grey;
-}
-
-body {
-  font: 12px sans-serif;
-  color: black;
-}
-
-a:link {
-  text-decoration: none;
-  font: 12px sans-serif;
-  color: steelblue;
-}
-
-a:visited {
-  text-decoration: none;
-  color: steelblue;
-}
-
-a:hover {
-  text-decoration: underline;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 .laughterBackground{
