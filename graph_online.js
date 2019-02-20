@@ -85,7 +85,7 @@ d3.csv(data_file, function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("fill", "url(#" + gradient_id + ")")
-      .attr("r", 6)
+      .attr("r", 8)
       .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
 
