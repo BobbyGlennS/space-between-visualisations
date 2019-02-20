@@ -1,3 +1,7 @@
+//  set the tooltip parameters
+var div = d3.select("body").append("div")
+     .attr("class", "tooltip")
+
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
@@ -106,13 +110,22 @@ d3.csv(data_file, function(error, data) {
         d3.select(this)
           .transition()
           .duration(200)
-          .attr("r", 8);
-        })
+          .attr("r", 8)
+        div.transition()
+          .duration(200)
+          .style("opacity", .9)
+          div.html("<strong>TJ:</strong> Feels like you're being a little harsh. <p> <strong>RD:</strong> Thanks, good note. I was going for extremely harsh, I'll turn it up.")
+          .style("left", (d3.event.pageX + "px"))
+          .style("top", (d3.event.pageY + 15 + "px"));
+      })
       .on("mouseout", function(d) {
         d3.select(this)
           .transition()
           .duration(200)
-          .attr("r", 4);
+          .attr("r", 4)
+        div.transition()
+          .duration(500)
+          .style("opacity", 0);
       });
 
   // add the X Axis
