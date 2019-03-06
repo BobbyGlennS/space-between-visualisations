@@ -22,14 +22,14 @@ var valueline = d3.line()
     .x(function(d) { return x(d.time); })
     .y(function(d) { return y(d.engagement_mean); })
 
-// append the svg object to the body of the page
-// appends a 'group' element to 'svg'
+// append the svg2 object to the body of the page
+// appends a 'group' element to 'svg2'
 // moves the 'group' element to the top left margin
-var svg = d3.select(area_id)
+var svg2 = d3.select(area_id)
   .append("div")
    .classed("svg-container", true) //container class to make it responsive
   .append("svg")
-   //responsive SVG needs these 2 attributes and no width and height attr
+   //responsive svg2 needs these 2 attributes and no width and height attr
    .attr("preserveAspectRatio", "xMinYMin meet")
    .attr("viewBox","0 0 " + width + " " + height)
    //class to make it responsive
@@ -58,7 +58,7 @@ d3.csv(data_file, function(error, data) {
   y.domain([0, 8])
 
   // add laughter
-  svg.selectAll("laugh_background")
+  svg2.selectAll("laugh_background")
       .data(data)
     .enter().append("rect")
       .style("fill", "#F0F0F0")
@@ -67,7 +67,7 @@ d3.csv(data_file, function(error, data) {
       .attr("height", height-20)
       .attr("width", function(d) { return x(d.laughter_duration)})
 
-  svg.selectAll("laugh_colour")
+  svg2.selectAll("laugh_colour")
       .data(data)
     .enter().append("rect")
       .style("fill", function (d) { return d.type_colour})
@@ -77,8 +77,8 @@ d3.csv(data_file, function(error, data) {
       .attr("width", function(d) { return x(d.laughter_duration)})
 
   // set the gradient
-  svg.append("linearGradient")
-    .attr("id", gradient_id)
+  svg2.append("linearGradient")
+    .attr("id", gradient_id2)
     .attr("gradientUnits", "userSpaceOnUse")
     .attr("x1", x(d3.min(data, function(d) { return d.time; }))).attr("y1", y(0))
     .attr("x2", x(d3.max(data, function(d) { return d.time; }))).attr("y2", y(0))
@@ -89,25 +89,25 @@ d3.csv(data_file, function(error, data) {
     .attr("stop-color", function(d) { return d.mood_colour; });
 
   // create background dots to round off edges of line
-  svg.selectAll("dot")
+  svg2.selectAll("dot")
       .data(data)
     .enter().append("circle")
-      .attr("fill", "url(#" + gradient_id + ")")
+      .attr("fill", "url(#" + gradient_id2 + ")")
       .attr("r", 6)
       .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
 
   // add the valueline path.
-  svg.append("path")
+  svg2.append("path")
       .data([data])
       //.attr("class", "line4")
       .style("fill", "none")
-      .style("stroke", "url(#" + gradient_id + ")")
+      .style("stroke", "url(#" + gradient_id2 + ")")
       .style("stroke-width", "12px")
       .attr("d", valueline);
 
   // add points
-  svg.selectAll("dot")
+  svg2.selectAll("dot")
       .data(data)
     .enter().append("circle")
       .attr("r", 4)
@@ -137,14 +137,14 @@ d3.csv(data_file, function(error, data) {
       });
 
   // add the X Axis
-    svg.append("g")
+    svg2.append("g")
         .attr("transform", "translate(0," + (height - 20) + ")")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%M:%S")));
 
   // add the Y Axis
-  svg.append("g")
+  svg2.append("g")
       .attr("transform", "translate(" + -10 + ",0)")
       .attr("class", "axisGrey")
       .call(d3.axisLeft(y)
@@ -152,7 +152,7 @@ d3.csv(data_file, function(error, data) {
               // .tickValues([1, 4, 8]));
 
   d3.select(".tick").remove()
-  svg.selectAll(".tick")
+  svg2.selectAll(".tick")
       .each(function (d) {
           if ( d === 0 ) {
               this.remove();

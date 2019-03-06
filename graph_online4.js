@@ -1,20 +1,18 @@
 //  set the tooltip parameters
-var div = d3.select(area_id).append("div")
+var div = d3.select("body").append("div")
      .attr("class", "tooltip")
 
 // set the dimensions and margins of the graph
-var margin = {top: 1, right: 50, bottom: 20, left: 30},
-    // width = 900 - margin.left - margin.right,
-    // height = 450 - margin.top - margin.bottom;
-    width = 950,
-    height = 550;
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 // parse the date / time
 var parseTime = d3.timeParse("%M:%S");
 
 // set the ranges
-var x = d3.scaleTime().range([20, width - 50]);
-var y = d3.scaleLinear().range([height - 20, 20]);
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
 
 // define the line
 var valueline = d3.line()
@@ -25,18 +23,12 @@ var valueline = d3.line()
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select(area_id)
-  .append("div")
-   .classed("svg-container", true) //container class to make it responsive
-  .append("svg")
-   //responsive SVG needs these 2 attributes and no width and height attr
-   .attr("preserveAspectRatio", "xMinYMin meet")
-   .attr("viewBox","0 0 " + width + " " + height)
-   //class to make it responsive
-   .classed("svg-content-responsive", true)
- .append("g")
-   .attr("transform",
-         "translate(" + margin.left + "," + margin.top + ")");
+var svg4 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
 // get the data
 d3.csv(data_file, function(error, data) {
@@ -58,27 +50,27 @@ d3.csv(data_file, function(error, data) {
   y.domain([0, 8])
 
   // add laughter
-  svg.selectAll("laugh_background")
+  svg4.selectAll("laugh_background")
       .data(data)
     .enter().append("rect")
       .style("fill", "#F0F0F0")
       .attr("x", function(d) { return x(d.laughter_start)})
       .attr("y", 0)
-      .attr("height", height-20)
+      .attr("height", height)
       .attr("width", function(d) { return x(d.laughter_duration)})
 
-  svg.selectAll("laugh_colour")
+  svg4.selectAll("laugh_colour")
       .data(data)
     .enter().append("rect")
       .style("fill", function (d) { return d.type_colour})
       .attr("x", function(d) { return x(d.laughter_start)})
-      .attr("y", height - 40)
+      .attr("y", height - 20)
       .attr("height", 20)
       .attr("width", function(d) { return x(d.laughter_duration)})
 
   // set the gradient
-  svg.append("linearGradient")
-    .attr("id", gradient_id)
+  svg4.append("linearGradient")
+    .attr("id", gradient_id4)
     .attr("gradientUnits", "userSpaceOnUse")
     .attr("x1", x(d3.min(data, function(d) { return d.time; }))).attr("y1", y(0))
     .attr("x2", x(d3.max(data, function(d) { return d.time; }))).attr("y2", y(0))
@@ -89,25 +81,25 @@ d3.csv(data_file, function(error, data) {
     .attr("stop-color", function(d) { return d.mood_colour; });
 
   // create background dots to round off edges of line
-  svg.selectAll("dot")
+  svg4.selectAll("dot")
       .data(data)
     .enter().append("circle")
-      .attr("fill", "url(#" + gradient_id + ")")
+      .attr("fill", "url(#" + gradient_id4 + ")")
       .attr("r", 6)
       .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
 
   // add the valueline path.
-  svg.append("path")
+  svg4.append("path")
       .data([data])
       //.attr("class", "line4")
       .style("fill", "none")
-      .style("stroke", "url(#" + gradient_id + ")")
+      .style("stroke", "url(#" + gradient_id4 + ")")
       .style("stroke-width", "12px")
       .attr("d", valueline);
 
   // add points
-  svg.selectAll("dot")
+  svg4.selectAll("dot")
       .data(data)
     .enter().append("circle")
       .attr("r", 4)
@@ -137,14 +129,14 @@ d3.csv(data_file, function(error, data) {
       });
 
   // add the X Axis
-    svg.append("g")
-        .attr("transform", "translate(0," + (height - 20) + ")")
+    svg4.append("g")
+        .attr("transform", "translate(0," + height + ")")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%M:%S")));
 
   // add the Y Axis
-  svg.append("g")
+  svg4.append("g")
       .attr("transform", "translate(" + -10 + ",0)")
       .attr("class", "axisGrey")
       .call(d3.axisLeft(y)
@@ -152,7 +144,7 @@ d3.csv(data_file, function(error, data) {
               // .tickValues([1, 4, 8]));
 
   d3.select(".tick").remove()
-  svg.selectAll(".tick")
+  svg4.selectAll(".tick")
       .each(function (d) {
           if ( d === 0 ) {
               this.remove();

@@ -3,18 +3,23 @@ var div = d3.select(area_id).append("div")
      .attr("class", "tooltip")
 
 // set the dimensions and margins of the graph
-var margin = {top: 1, right: 50, bottom: 20, left: 30},
-    // width = 900 - margin.left - margin.right,
-    // height = 450 - margin.top - margin.bottom;
-    width = 950,
-    height = 550;
+// var margin = {top: 20, right: 20, bottom: 30, left: 50},
+//     width = 700 - margin.left - margin.right,
+//     height = 312 - margin.top - margin.bottom;
 
+// var margin = {top: 2, right: 2, bottom: 3, left: 5},
+//     width = 20 - margin.left - margin.right,
+//     height = 10 - margin.top - margin.bottom;
+
+
+// "url(#" + gradient_id + ")"
+// "20em - " + margin.left - margin.right
 // parse the date / time
 var parseTime = d3.timeParse("%M:%S");
 
 // set the ranges
-var x = d3.scaleTime().range([20, width - 50]);
-var y = d3.scaleLinear().range([height - 20, 20]);
+var x = d3.scaleTime().range([0, 600]);
+var y = d3.scaleLinear().range([400, 0]);
 
 // define the line
 var valueline = d3.line()
@@ -25,18 +30,24 @@ var valueline = d3.line()
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select(area_id)
+
+// var svg = d3.select(area_id).append("svg")
+//     .attr("width", width + margin.left + margin.right)
+//     // .attr("width", "translate(" + (width + margin.left + margin.right) + "em)")
+//     .attr("height", height + margin.top + margin.bottom)
+//   .append("g")
+//     .attr("transform",
+//           "translate(" + margin.left + "," + margin.top + ")");
+
+var svg = d3.select("body")
   .append("div")
    .classed("svg-container", true) //container class to make it responsive
   .append("svg")
    //responsive SVG needs these 2 attributes and no width and height attr
    .attr("preserveAspectRatio", "xMinYMin meet")
-   .attr("viewBox","0 0 " + width + " " + height)
+   .attr("viewBox", "0 0 960 500")
    //class to make it responsive
-   .classed("svg-content-responsive", true)
- .append("g")
-   .attr("transform",
-         "translate(" + margin.left + "," + margin.top + ")");
+   .classed("svg-content-responsive", true);
 
 // get the data
 d3.csv(data_file, function(error, data) {
@@ -64,7 +75,7 @@ d3.csv(data_file, function(error, data) {
       .style("fill", "#F0F0F0")
       .attr("x", function(d) { return x(d.laughter_start)})
       .attr("y", 0)
-      .attr("height", height-20)
+      .attr("height", "12em")
       .attr("width", function(d) { return x(d.laughter_duration)})
 
   svg.selectAll("laugh_colour")
@@ -72,8 +83,8 @@ d3.csv(data_file, function(error, data) {
     .enter().append("rect")
       .style("fill", function (d) { return d.type_colour})
       .attr("x", function(d) { return x(d.laughter_start)})
-      .attr("y", height - 40)
-      .attr("height", 20)
+      .attr("y", "11em")
+      .attr("height", "1em")
       .attr("width", function(d) { return x(d.laughter_duration)})
 
   // set the gradient
@@ -138,14 +149,14 @@ d3.csv(data_file, function(error, data) {
 
   // add the X Axis
     svg.append("g")
-        .attr("transform", "translate(0," + (height - 20) + ")")
+        .attr("transform", "translate(0em," + 12 + "em)")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%M:%S")));
 
   // add the Y Axis
   svg.append("g")
-      .attr("transform", "translate(" + -10 + ",0)")
+      .attr("transform", "translate(" + -1 + "em,0em)")
       .attr("class", "axisGrey")
       .call(d3.axisLeft(y)
               .ticks(8));
