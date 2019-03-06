@@ -35,9 +35,9 @@ var svg4 = d3.select(area_id)
          "translate(" + margin.left + "," + margin.top + ")");
 
 //  set the tooltip parameters
-var div2 = d3.select(area_id).append("div")
+var div = d3.select(area_id).append("div")
     .attr("class", "tooltip")
-    
+
 // get the data
 d3.csv(data_file, function(error, data) {
   if (error) throw error;
@@ -78,7 +78,7 @@ d3.csv(data_file, function(error, data) {
 
   // set the gradient
   svg4.append("linearGradient")
-    .attr("id", gradient_id3)
+    .attr("id", gradient_id4)
     .attr("gradientUnits", "userSpaceOnUse")
     .attr("x1", x(d3.min(data, function(d) { return d.time; }))).attr("y1", y(0))
     .attr("x2", x(d3.max(data, function(d) { return d.time; }))).attr("y2", y(0))
@@ -92,7 +92,7 @@ d3.csv(data_file, function(error, data) {
   svg4.selectAll("dot")
       .data(data)
     .enter().append("circle")
-      .attr("fill", "url(#" + gradient_id3 + ")")
+      .attr("fill", "url(#" + gradient_id4 + ")")
       .attr("r", 6)
       .attr("cx", function(d) { return x(d.time)})
       .attr("cy", function(d) { return y(d.engagement_mean)})
@@ -102,7 +102,7 @@ d3.csv(data_file, function(error, data) {
       .data([data])
       //.attr("class", "line4")
       .style("fill", "none")
-      .style("stroke", "url(#" + gradient_id3 + ")")
+      .style("stroke", "url(#" + gradient_id4 + ")")
       .style("stroke-width", "12px")
       .attr("d", valueline);
 
@@ -119,10 +119,10 @@ d3.csv(data_file, function(error, data) {
           .transition()
           .duration(200)
           .attr("r", 8)
-        div2.transition()
+        div.transition()
           .duration(200)
           .style("opacity", .9)
-          div2.html("<strong>TJ:</strong> Feels like you're being a little harsh. <p> <strong>RD:</strong> Thanks, good note. I was going for extremely harsh, I'll turn it up.")
+          div.html("<strong>TJ:</strong> Feels like you're being a little harsh. <p> <strong>RD:</strong> Thanks, good note. I was going for extremely harsh, I'll turn it up.")
           .style("left", (d3.event.pageX + "px"))
           .style("top", (d3.event.pageY + 15 + "px"));
       })
@@ -131,7 +131,7 @@ d3.csv(data_file, function(error, data) {
           .transition()
           .duration(200)
           .attr("r", 4)
-        div2.transition()
+        div.transition()
           .duration(500)
           .style("opacity", 0);
       });

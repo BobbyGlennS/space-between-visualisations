@@ -34,9 +34,9 @@ var svg = d3.select(area_id)
    .attr("transform",
          "translate(" + margin.left + "," + margin.top + ")");
 
- //  set the tooltip parameters
- var div = d3.select(area_id).append("div")
-      .attr("class", "tooltip")
+//  set the tooltip parameters
+var div = d3.select(area_id).append("div")
+  .attr("class", "tooltip")
 
 // get the data
 d3.csv(data_file, function(error, data) {
