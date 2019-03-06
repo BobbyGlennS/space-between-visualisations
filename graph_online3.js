@@ -1,18 +1,16 @@
-//  set the tooltip parameters
-var div = d3.select(area_id).append("div")
-     .attr("class", "tooltip")
-
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 1, right: 50, bottom: 20, left: 30},
+    // width = 900 - margin.left - margin.right,
+    // height = 450 - margin.top - margin.bottom;
+    width = 950,
+    height = 550;
 
 // parse the date / time
 var parseTime = d3.timeParse("%M:%S");
 
 // set the ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
+var x = d3.scaleTime().range([20, width - 50]);
+var y = d3.scaleLinear().range([height - 20, 20]);
 
 // define the line
 var valueline = d3.line()
@@ -20,15 +18,25 @@ var valueline = d3.line()
     .x(function(d) { return x(d.time); })
     .y(function(d) { return y(d.engagement_mean); })
 
-// append the svg object to the body of the page
-// appends a 'group' element to 'svg'
+// append the svg3 object to the body of the page
+// appends a 'group' element to 'svg3'
 // moves the 'group' element to the top left margin
-var svg3 = d3.select(area_id).append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+var svg3 = d3.select(area_id)
+  .append("div")
+   .classed("svg-container", true) //container class to make it responsive
+  .append("svg")
+   //responsive svg3 needs these 2 attributes and no width and height attr
+   .attr("preserveAspectRatio", "xMinYMin meet")
+   .attr("viewBox","0 0 " + width + " " + height)
+   //class to make it responsive
+   .classed("svg-content-responsive", true)
+ .append("g")
+   .attr("transform",
+         "translate(" + margin.left + "," + margin.top + ")");
+
+//  set the tooltip parameters
+var div = d3.select(area_id).append("div")
+   .attr("class", "tooltip")
 
 // get the data
 d3.csv(data_file, function(error, data) {
@@ -56,7 +64,7 @@ d3.csv(data_file, function(error, data) {
       .style("fill", "#F0F0F0")
       .attr("x", function(d) { return x(d.laughter_start)})
       .attr("y", 0)
-      .attr("height", height)
+      .attr("height", height-20)
       .attr("width", function(d) { return x(d.laughter_duration)})
 
   svg3.selectAll("laugh_colour")
@@ -64,7 +72,7 @@ d3.csv(data_file, function(error, data) {
     .enter().append("rect")
       .style("fill", function (d) { return d.type_colour})
       .attr("x", function(d) { return x(d.laughter_start)})
-      .attr("y", height - 20)
+      .attr("y", height - 40)
       .attr("height", 20)
       .attr("width", function(d) { return x(d.laughter_duration)})
 
@@ -130,7 +138,7 @@ d3.csv(data_file, function(error, data) {
 
   // add the X Axis
     svg3.append("g")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + (height - 20) + ")")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%M:%S")));
