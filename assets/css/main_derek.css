@@ -2702,7 +2702,7 @@ input, select, textarea {
 		height: 100%;
 		overflow-y: auto;
 		position: fixed;
-		text-align: center;
+		text-align: left;
 		top: 0;
 		width: 23em;
 		right: 0;
@@ -2784,7 +2784,7 @@ input, select, textarea {
 			#header > nav ul {
 				list-style: none;
 				margin: 0;
-				padding: 0;
+				padding: 2em;
 			}
 
 				#header > nav ul li {
@@ -3369,7 +3369,7 @@ input, select, textarea {
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 65%; /* aspect ratio */
+		padding-bottom: 65%; /* aspect ratio */
 		vertical-align: top;
     overflow: hidden;
 }
@@ -3386,4 +3386,17 @@ input, select, textarea {
 	max-width:55%;
 	height: auto;
 	float: right;
+}
+
+hr {
+  color: #DDD;
+	background-color: #DDD;
+	border-color: #DDD;
+	display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  border-style: inset;
+  border-width: 0.15em;
 }
