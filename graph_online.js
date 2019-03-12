@@ -141,6 +141,7 @@ d3.csv(data_file, function(error, data) {
         .attr("transform", "translate(0," + (height - 20) + ")")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
+          .ticks(d3.timeSecond.every(30))
           .tickFormat(d3.timeFormat("%M:%S")));
 
   // add the Y Axis
