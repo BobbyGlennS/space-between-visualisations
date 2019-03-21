@@ -1,5 +1,5 @@
-@import url("font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,700");
+500@import url("font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500");
 
 /*
 	Read Only by HTML5 UP
@@ -122,7 +122,7 @@ input, select, textarea {
 
 	strong, b {
 		color: #777;
-		font-weight: 700;
+		font-weight: 500;
 	}
 
 	em, i {
@@ -134,17 +134,18 @@ input, select, textarea {
 	}
 
 	h1, h3, h4, h5, h6 {
-		color: #777;
+		color: #555;
 		font-family: 'Roboto', sans-serif;
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 1em;
 		margin: 0 0 0.5625em 0;
 	}
 
 	h2 {
-		color: #F59100;
+		/* color: #F59100; */
+		color: #FFF;
 		font-family: 'Roboto', sans-serif;
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 1em;
 		margin: 0 0 0.5625em 0;
 	}
@@ -162,15 +163,15 @@ input, select, textarea {
 
 	h3 {
 		font-family: 'Roboto', sans-serif;
-		font-weight: 300;
+		font-weight: 500;
 		font-size: 2em;
 		line-height: 1.5em;
 	}
 
 	h4 {
 		font-family: 'Roboto', sans-serif;
-		font-weight: 700;
-		font-size: 1.25em;
+		font-weight: 500;
+		font-size: 1.1em;
 		line-height: 1.5em;
 	}
 
@@ -1805,7 +1806,7 @@ input, select, textarea {
 		header.major h2 + p {
 			color: #777;
 			font-size: 1.75em;
-			font-weight: 700;
+			font-weight: 500;
 			margin-top: -0.75em;
 		}
 
@@ -2001,14 +2002,30 @@ input, select, textarea {
 
 		.image.main {
 			display: flex;
-			height: 15em;
-			/* width: 30em; */
+			height: 20em;
     	border-radius: 0;
+			background:
+			  linear-gradient(
+			    rgba(0, 0, 0, 0.45),
+			    rgba(0, 0, 0, 0)
+			    ),
+			  url("../../images/workshop.jpg");
+			background-size: cover;
 		}
 
 			.image.main img {
 				border-radius: 0;
 			}
+/*
+			.image.main::after {
+			  display: block;
+			  position: relative;
+			  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
+			  margin-top: -150px;
+			  height: 150px;
+			  width: 100%;
+			  content: '';
+			} */
 
 /* List */
 
@@ -2263,7 +2280,7 @@ input, select, textarea {
 		table th {
 			color: #777;
 			font-size: 0.9em;
-			font-weight: 700;
+			font-weight: 500;
 			padding: 0 0.75em 0.75em 0.75em;
 			text-align: left;
 		}
@@ -2479,7 +2496,7 @@ input, select, textarea {
 /* Main */
 
 	#main > section {
-		border-top: solid 6px #f4f4f4;
+		border-top: solid 1px #f4f4f4;
 	}
 
 		#main > section > .container {
@@ -2688,7 +2705,7 @@ input, select, textarea {
 				#titleBar .title {
 					color: #fff;
 					display: block;
-					font-weight: 700;
+					font-weight: 500;
 					height: 44px;
 					line-height: 44px;
 					padding: 0 1em;
@@ -2775,7 +2792,7 @@ input, select, textarea {
 			}
 
 			h4 {
-				font-size: 1.25em;
+				font-size: 1.1em;
 			}
 
 		/* Image */
@@ -2972,7 +2989,7 @@ div.tooltip p{
 }
 
 div.tooltip strong{
-  font-weight: 700;
+  font-weight: 500;
   font-size: 12;
 	color: #FFF;
 }
@@ -3021,4 +3038,10 @@ div.tooltip strong{
 	max-width:55%;
 	height: auto;
 	float: right;
+}
+
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
 }
