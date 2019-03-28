@@ -1,16 +1,19 @@
 // set the dimensions and margins of the graph
-var margin = {top: 1, right: 50, bottom: 20, left: 30},
-    // width = 900 - margin.left - margin.right,
-    // height = 450 - margin.top - margin.bottom;
-    width = 950,
-    height = 550;
+var margin = {top: 10, right: 100, bottom: 40, left: 70},
+    width = 1100 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
 // parse the date / time
 var parseTime = d3.timeParse("%M:%S");
 
 // set the ranges
-var x = d3.scaleTime().range([20, width - 50]);
-var y = d3.scaleLinear().range([height - 20, 20]);
+var x = d3.scaleTime().range([margin.left, width - margin.right]);
+var y = d3.scaleLinear().range([height - margin.bottom, margin.top]);
+
+// set the colour scale
+var colour = d3.scaleLinear()
+               .domain([0, 1.3, 2.7, 4, 5.3, 6.7, 8])
+               .range(["##9F150F", "#FF0000", "#F59100", "#FFE600", "#A8D600", "#009900", "#0A5609"]);
 
 // define the line
 var valueline = d3.line()
@@ -18,16 +21,16 @@ var valueline = d3.line()
     .x(function(d) { return x(d.time); })
     .y(function(d) { return y(d.engagement_mean); })
 
-// append the svg3 object to the body of the page
-// appends a 'group' element to 'svg3'
+// append the svg object to the body of the page
+// appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
 var svg3 = d3.select(area_id)
   .append("div")
    .classed("svg-container", true) //container class to make it responsive
   .append("svg")
-   //responsive svg3 needs these 2 attributes and no width and height attr
+   //responsive SVG needs these 2 attributes and no width and height attr
    .attr("preserveAspectRatio", "xMinYMin meet")
-   .attr("viewBox","0 0 " + width + " " + height)
+   .attr("viewBox","0 0 " + width + " " + height + 25)
    //class to make it responsive
    .classed("svg-content-responsive", true)
  .append("g")
@@ -36,7 +39,7 @@ var svg3 = d3.select(area_id)
 
 //  set the tooltip parameters
 var div = d3.select(area_id).append("div")
-   .attr("class", "tooltip")
+  .attr("class", "tooltip")
 
 // get the data
 d3.csv(data_file, function(error, data) {
@@ -47,14 +50,14 @@ d3.csv(data_file, function(error, data) {
       d.time = parseTime(d.time);
       d.laughter_start = parseTime(d.laughter_start);
       d.engagement_mean = +d.engagement_mean;
-      d.laughter_duration = parseTime(d.laughter_duration);
+      d.laughter_duration = +d.laughter_duration;
   });
   // print the first row of the data in the browser's console to check whether
   // importing has gone ok
-  console.log(data[1]);
+  // console.log(data[1]);
   // scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d.time; }));
-  // y.domain([0, d3.max(data, function(d) { return d.engagement_mean; })]);
+  // x.domain(d3.extent(data, function(d) { return d.time; }));
+  x.domain([parseTime("00:00"), parseTime("05:15")])
   y.domain([0, 8])
 
   // add laughter
@@ -64,17 +67,17 @@ d3.csv(data_file, function(error, data) {
       .style("fill", "#F0F0F0")
       .attr("x", function(d) { return x(d.laughter_start)})
       .attr("y", 0)
-      .attr("height", height-20)
-      .attr("width", function(d) { return x(d.laughter_duration)})
+      .attr("height", height - 40)
+      .attr("width", function(d) { return (d.laughter_duration / 315) * (width - margin.left)})
 
   svg3.selectAll("laugh_colour")
       .data(data)
     .enter().append("rect")
       .style("fill", function (d) { return d.type_colour})
       .attr("x", function(d) { return x(d.laughter_start)})
-      .attr("y", height - 40)
+      .attr("y", height - 60)
       .attr("height", 20)
-      .attr("width", function(d) { return x(d.laughter_duration)})
+      .attr("width", function(d) { return (d.laughter_duration / 300) * (width - margin.left)})
 
   // set the gradient
   svg3.append("linearGradient")
@@ -86,7 +89,7 @@ d3.csv(data_file, function(error, data) {
     .data(data)
   .enter().append("stop")
     .attr("offset", function(d) { return d.offset; })
-    .attr("stop-color", function(d) { return d.mood_colour; });
+    .attr("stop-color", function(d) { return colour(d.mood_mean); });
 
   // create background dots to round off edges of line
   svg3.selectAll("dot")
@@ -100,7 +103,6 @@ d3.csv(data_file, function(error, data) {
   // add the valueline path.
   svg3.append("path")
       .data([data])
-      //.attr("class", "line4")
       .style("fill", "none")
       .style("stroke", "url(#" + gradient_id3 + ")")
       .style("stroke-width", "12px")
@@ -122,7 +124,7 @@ d3.csv(data_file, function(error, data) {
         div.transition()
           .duration(200)
           .style("opacity", .9)
-          div.html("<strong>TJ:</strong> Feels like you're being a little harsh. <p> <strong>RD:</strong> Thanks, good note. I was going for extremely harsh, I'll turn it up.")
+          div.html("<p><strong>TJ: </strong>Feels like you're being a little harsh.</p><p><strong>RD:</strong> Thanks, good note. I was going for extremely harsh, I'll turn it up.</p>")
           .style("left", (d3.event.pageX + "px"))
           .style("top", (d3.event.pageY + 15 + "px"));
       })
@@ -138,25 +140,39 @@ d3.csv(data_file, function(error, data) {
 
   // add the X Axis
     svg3.append("g")
-        .attr("transform", "translate(0," + (height - 20) + ")")
+        .attr("transform", "translate(0," + (height - margin.bottom) + ")")
         .attr("class", "axisGrey")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%M:%S")));
 
-  // add the Y Axis
-  svg3.append("g")
-      .attr("transform", "translate(" + -10 + ",0)")
-      .attr("class", "axisGrey")
-      .call(d3.axisLeft(y)
-              .ticks(8));
-              // .tickValues([1, 4, 8]));
+    // add the Y Axis
+    svg3.append("g")
+        .attr("transform", "translate(" + 50 + ",0)")
+        .attr("class", "axisGrey")
+        .call(d3.axisLeft(y)
+                .ticks(8));
+                // .tickValues([1, 4, 8]));
 
-  d3.select(".tick").remove()
-  svg3.selectAll(".tick")
-      .each(function (d) {
-          if ( d === 0 ) {
-              this.remove();
-          }
-      });
+    d3.select(".tick").remove()
+    svg3.selectAll(".tick")
+        .each(function (d) {
+            if ( d === 0 ) {
+                this.remove();
+            }
+        });
+
+    // add labels for axes
+    svg3.append("text")
+        .attr("text-anchor", "center")
+        .attr("transform",
+              "translate(" + ((width - margin.left - margin.right) / 2) + "," + (height + 25) + ")")
+        .text("Time")
+        .style("font-weight", "500");
+
+    svg3.append("text")
+        .attr("text-anchor", "center")
+        .attr("transform", "translate(0," + height / 2 + ")rotate(-90)")
+        .text("Engagement")
+        .style("font-weight", "500");
 
 });

@@ -1,5 +1,5 @@
-500@import url("font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,500");
+@import url("font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500,700");
 
 /*
 	Read Only by HTML5 UP
@@ -2971,12 +2971,12 @@ div.tooltip {
   text-align: left;
   width: 100px;
   height: auto;
-  padding: 5px;
+  padding: 10px;
   font-family: 'Roboto', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 300;
   color: #FFFFFF;
-  background: #535353;
+  background: #000000;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
@@ -2984,14 +2984,18 @@ div.tooltip {
 }
 
 div.tooltip p{
-  line-height: 1.3em;
-  margin-bottom: 0.2em;
+  line-height: 1.4em;
+  margin-bottom: 0em;
 }
 
 div.tooltip strong{
-  font-weight: 500;
+  font-weight: 700;
   font-size: 12;
 	color: #FFF;
+}
+
+div.tooltip br{
+	line-height: 0.2em;
 }
 
 .axisGrey line {
@@ -3025,6 +3029,7 @@ div.tooltip strong{
 		vertical-align: top;
     overflow: hidden;
 }
+
 .svg-content-responsive {
     display: inline-block;
     position: absolute;
@@ -3036,7 +3041,7 @@ div.tooltip strong{
 
 .container img{
 	max-width:55%;
-	height: auto;
+	height: 3em;
 	float: right;
 }
 
