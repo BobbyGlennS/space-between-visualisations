@@ -109,18 +109,17 @@ d3.csv(data_file, function(error, data) {
   svg1_1.append("path")
     .data([data])
     .attr("fill", "none")
-    .attr("stroke", "#AAAAAA")
-    .attr("stroke-width", 2)
+    .style("stroke", "url(#" + gradient_id1_1 + ")")
+    .attr("stroke-width", "13px")
+    .style("opacity", 0.3)
     .attr("d", rater_line1)
     .on("mouseenter", function() {
       d3.select(this)
-        .style("stroke", "url(#" + gradient_id1_1 + ")")
-        .attr("stroke-width", "13px")
+        .style("opacity", 1)
     })
     .on("mouseleave", function() {
       d3.select(this)
-        .attr("stroke-width", 2)
-        .style("stroke", "#AAAAAA")
+      .style("opacity", 0.3)
     });
 
   // add points for rater 1
@@ -157,18 +156,17 @@ d3.csv(data_file, function(error, data) {
   svg1_1.append("path")
     .data([data])
     .attr("fill", "none")
-    .attr("stroke", "#AAAAAA")
-    .attr("stroke-width", 2)
+    .style("stroke", "url(#" + gradient_id1_2 + ")")
+    .attr("stroke-width", "13px")
+    .style("opacity", 0.3)
     .attr("d", rater_line2)
     .on("mouseover", function() {
       d3.select(this)
-        .style("stroke", "url(#" + gradient_id1_2 + ")")
-        .attr("stroke-width", "13px")
+        .style("opacity", 1)
     })
     .on("mouseout", function() {
       d3.select(this)
-        .attr("stroke-width", 2)
-        .style("stroke", "#AAAAAA")
+      .style("opacity", 0.3)
     });
 
   // add points for rater 2
@@ -205,18 +203,17 @@ d3.csv(data_file, function(error, data) {
       svg1_1.append("path")
         .data([data])
         .attr("fill", "none")
-        .attr("stroke", "#AAAAAA")
-        .attr("stroke-width", 2)
+        .style("stroke", "url(#" + gradient_id1_3 + ")")
+        .attr("stroke-width", "13px")
+        .style("opacity", 0.3)
         .attr("d", rater_line3)
         .on("mouseover", function() {
           d3.select(this)
-            .style("stroke", "url(#" + gradient_id1_3 + ")")
-            .attr("stroke-width", "13px")
+          .style("opacity", 1)
         })
         .on("mouseout", function() {
           d3.select(this)
-            .attr("stroke-width", 2)
-            .style("stroke", "#AAAAAA")
+          .style("opacity", 0.3)
         });
 
       // rater 3 dots
@@ -278,12 +275,16 @@ d3.csv(data_file, function(error, data) {
         .attr("transform",
               "translate(" + ((width - margin.left - margin.right) / 2) + "," + (height + 25) + ")")
         .text("Time")
-        .style("font-weight", "500");
+        // .style("color", "#333")
+        .style("font-weight", "500")
+        .style("font-size", "14pt");
 
     svg1_1.append("text")
         .attr("text-anchor", "center")
         .attr("transform", "translate(0," + height / 2 + ")rotate(-90)")
         .text("Engagement")
-        .style("font-weight", "500");
+        // .style("color", "#333")
+        .style("font-weight", "500")
+        .style("font-size", "14pt");
 
 });

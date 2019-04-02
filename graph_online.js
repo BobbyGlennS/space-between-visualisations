@@ -151,16 +151,7 @@ d3.csv(data_file, function(error, data) {
         .attr("transform", "translate(" + 50 + ",0)")
         .attr("class", "axisGrey")
         .call(d3.axisLeft(y)
-                .ticks(8));
-                // .tickValues([1, 4, 8]));
-
-    d3.select(".tick").remove()
-    svg.selectAll(".tick")
-        .each(function (d) {
-            if ( d === 0 ) {
-                this.remove();
-            }
-        });
+                .tickValues(d3.range(1, 9)));
 
     // add labels for axes
     svg.append("text")

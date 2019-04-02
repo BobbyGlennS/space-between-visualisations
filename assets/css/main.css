@@ -1,5 +1,5 @@
 @import url("font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,500,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 
 /*
 	Read Only by HTML5 UP
@@ -170,9 +170,9 @@ input, select, textarea {
 
 	h4 {
 		font-family: 'Roboto', sans-serif;
-		font-weight: 500;
-		font-size: 1.1em;
-		line-height: 1.5em;
+		font-weight: 400;
+		font-size: 1.5em;
+		line-height: 1.8em;
 	}
 
 	h5 {
@@ -2009,7 +2009,8 @@ input, select, textarea {
 			    rgba(0, 0, 0, 0.45),
 			    rgba(0, 0, 0, 0)
 			    ),
-			  url("../../images/workshop.jpg");
+			  /* url("../../images/workshop.jpg"); */
+				url("../../images/workshop.jpg");
 			background-size: cover;
 		}
 
