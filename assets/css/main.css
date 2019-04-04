@@ -158,14 +158,14 @@ input, select, textarea {
 
 	h2 {
 		font-size: 1.5em;
-		line-height: 1.5em;
+		line-height: 1.2em;
 	}
 
 	h3 {
 		font-family: 'Roboto', sans-serif;
 		font-weight: 500;
 		font-size: 2em;
-		line-height: 1.5em;
+		line-height: 1.2em;
 	}
 
 	h4 {
@@ -2009,7 +2009,6 @@ input, select, textarea {
 			    rgba(0, 0, 0, 0.45),
 			    rgba(0, 0, 0, 0)
 			    ),
-			  /* url("../../images/workshop.jpg"); */
 				url("../../images/workshop.jpg");
 			background-size: cover;
 		}
@@ -2017,16 +2016,6 @@ input, select, textarea {
 			.image.main img {
 				border-radius: 0;
 			}
-/*
-			.image.main::after {
-			  display: block;
-			  position: relative;
-			  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
-			  margin-top: -150px;
-			  height: 150px;
-			  width: 100%;
-			  content: '';
-			} */
 
 /* List */
 
@@ -2490,14 +2479,15 @@ input, select, textarea {
 
 	#wrapper {
 		background: #fff;
-		padding-left: 1em;
-		padding-right: 24em;
+		/* padding-left: 1em; */
+		padding-left: 0em;
+		padding-right: 23em;
 	}
 
 /* Main */
 
 	#main > section {
-		border-top: solid 1px #f4f4f4;
+		/* border-top: solid 1px #f4f4f4; */
 	}
 
 		#main > section > .container {
@@ -3012,6 +3002,12 @@ div.tooltip br{
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 14px;
+}
+
+.axisLabel {
+	fill: #333;
+	font-weight: 500;
+	font-size: 14pt;
 }
 
 .laughterBackground{

@@ -163,12 +163,12 @@ d3.csv(data_file, function(error, data) {
         .attr("transform",
               "translate(" + ((width - margin.left - margin.right) / 2) + "," + (height + 25) + ")")
         .text("Time")
-        .style("font-weight", "500");
+        .attr("class", "axisLabel")
 
     svg2.append("text")
         .attr("text-anchor", "center")
         .attr("transform", "translate(0," + height / 2 + ")rotate(-90)")
         .text("Engagement")
-        .style("font-weight", "500");
+        .attr("class", "axisLabel")
 
 });

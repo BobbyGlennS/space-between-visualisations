@@ -275,16 +275,12 @@ d3.csv(data_file, function(error, data) {
         .attr("transform",
               "translate(" + ((width - margin.left - margin.right) / 2) + "," + (height + 25) + ")")
         .text("Time")
-        // .style("color", "#333")
-        .style("font-weight", "500")
-        .style("font-size", "14pt");
+        .attr("class", "axisLabel")
 
     svg1_1.append("text")
         .attr("text-anchor", "center")
         .attr("transform", "translate(0," + height / 2 + ")rotate(-90)")
         .text("Engagement")
-        // .style("color", "#333")
-        .style("font-weight", "500")
-        .style("font-size", "14pt");
+        .attr("class", "axisLabel")
 
 });
