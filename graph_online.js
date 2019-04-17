@@ -43,7 +43,6 @@ var div = d3.select(area_id).append("div")
 
 // get the data
 d3.csv(data_file, function(error, data) {
-  console.log(data[1]);
   if (error) throw error;
 
   // all data is now imported. For numerical variables, format the data using "+"
@@ -55,7 +54,9 @@ d3.csv(data_file, function(error, data) {
   });
   // print the first row of the data in the browser's console to check whether
   // importing has gone ok
-  console.log(data[1]);
+  // console.log(data[data.length - 1].mood1)
+  // console.log(data)
+
   // scale the range of the data
   // x.domain(d3.extent(data, function(d) { return d.time; }));
   x.domain([parseTime("00:00"), parseTime("05:00")])

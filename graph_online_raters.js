@@ -16,6 +16,11 @@ var colour = d3.scaleLinear()
                .range(["##9F150F", "#FF0000", "#F59100", "#FFE600", "#A8D600", "#009900", "#0A5609"]);
 
 // define the line
+var rater_line_mean = d3.line()
+    .curve(d3.curveCardinal.tension(0.9))
+    .x(function(d) { return x(d.time); })
+    .y(function(d) { return y(d.engagement_mean); });
+
 var rater_line1 = d3.line()
     .curve(d3.curveCardinal.tension(0.9))
     .x(function(d) { return x(d.time); })
@@ -58,9 +63,11 @@ d3.csv(data_file, function(error, data) {
   // all data is now imported. For numerical variables, format the data using "+"
   data.forEach(function(d) {
       d.time = parseTime(d.time);
+      d.mood_mean = +d.mood_mean;
       d.mood1 = +d.mood1;
       d.mood2 = +d.mood2;
       d.mood3 = +d.mood3;
+      d.engagement_mean = +d.engagement_mean;
       d.eng1 = +d.eng1;
       d.eng2 = +d.eng2;
       d.eng3 = +d.eng3;
@@ -68,6 +75,18 @@ d3.csv(data_file, function(error, data) {
   // scale the range of the data
   x.domain([parseTime("00:00"), parseTime("05:00")]);
   y.domain([0, 8])
+
+  // set the gradient for mean line
+  svg1_1.append("linearGradient")
+    .attr("id", gradient_id1_0)
+    .attr("gradientUnits", "userSpaceOnUse")
+    .attr("x1", x(d3.min(data, function(d) { return d.time; }))).attr("y1", y(0))
+    .attr("x2", x(d3.max(data, function(d) { return d.time; }))).attr("y2", y(0))
+  .selectAll("stop")
+    .data(data)
+  .enter().append("stop")
+    .attr("offset", function(d) { return d.offset; })
+    .attr("stop-color", function(d) { return colour(d.mood_mean); });
 
   // set the gradient for rater 1
   svg1_1.append("linearGradient")
@@ -105,146 +124,197 @@ d3.csv(data_file, function(error, data) {
       .attr("offset", function(d) { return d.offset; })
       .attr("stop-color", function(d) { return colour(d.mood3); });
 
-  // Add path for rater 1
+  // Add path for rater mean
   svg1_1.append("path")
     .data([data])
     .attr("fill", "none")
-    .style("stroke", "url(#" + gradient_id1_1 + ")")
+    .style("stroke", "url(#" + gradient_id1_0 + ")")
     .attr("stroke-width", "13px")
-    .style("opacity", 0.3)
-    .attr("d", rater_line1)
-    .on("mouseenter", function() {
-      d3.select(this)
-        .style("opacity", 1)
-    })
-    .on("mouseleave", function() {
-      d3.select(this)
-      .style("opacity", 0.3)
-    });
+    .style("opacity", 1)
+    .attr("d", rater_line_mean)
 
-  // add points for rater 1
+  // add points for rater mean
   svg1_1.selectAll("dot")
       .data(data)
     .enter().append("circle")
       .attr("r", 3)
       .attr("cx", function(d) { return x(d.time)})
-      .attr("cy", function(d) { return y(d.eng1)})
+      .attr("cy", function(d) { return y(d.engagement_mean)})
       .attr("fill", "#000000")
-      .on("mouseover", function (d) {
-        d3.select(this)
-          .transition()
-          .duration(500)
-          .attr("r", 8)
+
+  // Add path for rater 1
+  svg1_1.append("path")
+    .data([data])
+    .attr("fill", "none")
+    .style("stroke", "url(#" + gradient_id1_1 + ")")
+    .attr("stroke-width", "5px")
+    // .attr("stroke-width", "13px")
+    .style("opacity", 0.2)
+    .attr("d", rater_line1)
+    .on("mouseenter", function() {
+      d3.select(this)
+        .style("opacity", 1)
         div.transition()
           .duration(200)
           .style("opacity", 0.9);
-          div.html("<p><strong>Rater 1</strong></p><p>" + d.mood1 + " mood</p>")
-          .style("left", (d3.event.pageX + "px"))
+          div.html("<strong>rater 1</strong>")
+          .style("left", (width + "px"))
           .style("top", (d3.event.pageY + 15 + "px"));
-      })
-      .on("mouseout", function(d) {
-        d3.select(this)
-          .transition()
-          .duration(500)
-          .attr("r", 3)
-        div.transition()
-          .duration(500)
-          .style("opacity", 0);
-      });
+          // .style("top", String(data[data.length - 1].eng1));
+          // .style("left", (width + "px"))
+          // .style("top", (d3.event.pageY + 15 + "px"));
+    })
+    .on("mouseleave", function() {
+      d3.select(this)
+      .style("opacity", 0.2)
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
+    console.log(data[data.length - 1].eng1)
+  // add points for rater 1
+  // svg1_1.selectAll("dot")
+  //     .data(data)
+  //   .enter().append("circle")
+  //     .attr("r", 3)
+  //     .attr("cx", function(d) { return x(d.time)})
+  //     .attr("cy", function(d) { return y(d.eng1)})
+  //     .attr("fill", "#000000")
+  //     .on("mouseover", function (d) {
+  //       d3.select(this)
+  //         .transition()
+  //         .duration(500)
+  //         .attr("r", 8)
+  //       div.transition()
+  //         .duration(200)
+  //         .style("opacity", 0.9);
+  //         div.html("<p><strong>Rater 1</strong></p><p>" + d.mood1 + " mood</p>")
+  //         .style("left", (d3.event.pageX + "px"))
+  //         .style("top", (d3.event.pageY + 15 + "px"));
+  //     })
+  //     .on("mouseout", function(d) {
+  //       d3.select(this)
+  //         .transition()
+  //         .duration(500)
+  //         .attr("r", 3)
+  //       div.transition()
+  //         .duration(500)
+  //         .style("opacity", 0);
+  //     });
 
   // rater 2 line
   svg1_1.append("path")
     .data([data])
     .attr("fill", "none")
     .style("stroke", "url(#" + gradient_id1_2 + ")")
-    .attr("stroke-width", "13px")
-    .style("opacity", 0.3)
+    .attr("stroke-width", "5px")
+    .style("opacity", 0.2)
     .attr("d", rater_line2)
-    .on("mouseover", function() {
+    .on("mouseenter", function() {
       d3.select(this)
         .style("opacity", 1)
+        div.transition()
+          .duration(200)
+          .style("opacity", 0.9);
+          div.html("<strong>rater 2</strong>")
+          .style("left", (width + "px"))
+          .style("top", (d3.event.pageY + 15 + "px"));
+          // .style("top", (data[data.length - 1].eng2));
     })
-    .on("mouseout", function() {
+    .on("mouseleave", function() {
       d3.select(this)
-      .style("opacity", 0.3)
+      .style("opacity", 0.2)
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
     });
 
   // add points for rater 2
-  svg1_1.selectAll("dot")
-      .data(data)
-    .enter().append("circle")
-      .attr("r", 3)
-      .attr("cx", function(d) { return x(d.time)})
-      .attr("cy", function(d) { return y(d.eng2)})
-      .attr("fill", "#000000")
-      .on("mouseover", function (d) {
-        d3.select(this)
-          .transition()
-          .duration(500)
-          .attr("r", 8)
-        div.transition()
-          .duration(200)
-          .style("opacity", .9);
-          div.html("<p><strong>Rater 2</strong></p><p>" + d.mood2 + " mood</p>")
-          .style("left", (d3.event.pageX + "px"))
-          .style("top", (d3.event.pageY + 15 + "px"));
-      })
-      .on("mouseout", function(d) {
-        d3.select(this)
-          .transition()
-          .duration(500)
-          .attr("r", 3)
-        div.transition()
-          .duration(500)
-          .style("opacity", 0);
-      });
+  // svg1_1.selectAll("dot")
+  //     .data(data)
+  //   .enter().append("circle")
+  //     .attr("r", 3)
+  //     .attr("cx", function(d) { return x(d.time)})
+  //     .attr("cy", function(d) { return y(d.eng2)})
+  //     .attr("fill", "#000000")
+  //     .on("mouseover", function (d) {
+  //       d3.select(this)
+  //         .transition()
+  //         .duration(500)
+  //         .attr("r", 8)
+  //       div.transition()
+  //         .duration(200)
+  //         .style("opacity", .9);
+  //         div.html("<p><strong>Rater 2</strong></p><p>" + d.mood2 + " mood</p>")
+  //         .style("left", (d3.event.pageX + "px"))
+  //         .style("top", (d3.event.pageY + 15 + "px"));
+  //     })
+  //     .on("mouseout", function(d) {
+  //       d3.select(this)
+  //         .transition()
+  //         .duration(500)
+  //         .attr("r", 3)
+  //       div.transition()
+  //         .duration(500)
+  //         .style("opacity", 0);
+  //     });
 
       // rater 3 line
       svg1_1.append("path")
         .data([data])
         .attr("fill", "none")
         .style("stroke", "url(#" + gradient_id1_3 + ")")
-        .attr("stroke-width", "13px")
-        .style("opacity", 0.3)
+        .attr("stroke-width", "5px")
+        .style("opacity", 0.2)
         .attr("d", rater_line3)
-        .on("mouseover", function() {
+        .on("mouseenter", function() {
           d3.select(this)
-          .style("opacity", 1)
+            .style("opacity", 1)
+            div.transition()
+              .duration(200)
+              .style("opacity", 0.9);
+              div.html("<strong>rater 3</strong>")
+              .style("left", (width + "px"))
+              .style("top", (d3.event.pageY + 15 + "px"));
+              // .style("top", (data[data.length - 1].eng2));
         })
-        .on("mouseout", function() {
+        .on("mouseleave", function() {
           d3.select(this)
-          .style("opacity", 0.3)
+          .style("opacity", 0.2)
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
         });
 
       // rater 3 dots
-      svg1_1.selectAll("dot")
-          .data(data)
-        .enter().append("circle")
-          .attr("r", 3)
-          .attr("cx", function(d) { return x(d.time)})
-          .attr("cy", function(d) { return y(d.eng3)})
-          .attr("fill", "#000000")
-          .on("mouseover", function (d) {
-            d3.select(this)
-              .transition()
-              .duration(500)
-              .attr("r", 8)
-            div.transition()
-              .duration(200)
-              .style("opacity", .9);
-              div.html("<p><strong>Rater 3</strong></p><p>" + d.mood3 + " mood</p>")
-              .style("left", (d3.event.pageX + "px"))
-              .style("top", (d3.event.pageY + 15 + "px"));
-          })
-          .on("mouseout", function(d) {
-            d3.select(this)
-              .transition()
-              .duration(500)
-              .attr("r", 3)
-            div.transition()
-              .duration(500)
-              .style("opacity", 0);
-          });
+      // svg1_1.selectAll("dot")
+      //     .data(data)
+      //   .enter().append("circle")
+      //     .attr("r", 3)
+      //     .attr("cx", function(d) { return x(d.time)})
+      //     .attr("cy", function(d) { return y(d.eng3)})
+      //     .attr("fill", "#000000")
+      //     .on("mouseover", function (d) {
+      //       d3.select(this)
+      //         .transition()
+      //         .duration(500)
+      //         .attr("r", 8)
+      //       div.transition()
+      //         .duration(200)
+      //         .style("opacity", .9);
+      //         div.html("<p><strong>Rater 3</strong></p><p>" + d.mood3 + " mood</p>")
+      //         .style("left", (d3.event.pageX + "px"))
+      //         .style("top", (d3.event.pageY + 15 + "px"));
+      //     })
+      //     .on("mouseout", function(d) {
+      //       d3.select(this)
+      //         .transition()
+      //         .duration(500)
+      //         .attr("r", 3)
+      //       div.transition()
+      //         .duration(500)
+      //         .style("opacity", 0);
+      //     });
 
   // add the X Axis
     svg1_1.append("g")
