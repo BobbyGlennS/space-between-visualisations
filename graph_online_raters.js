@@ -132,6 +132,7 @@ d3.csv(data_file, function(error, data) {
     .attr("stroke-width", "13px")
     .style("opacity", 1)
     .attr("d", rater_line_mean)
+    // .attr('filter', 'url(#dropShadow)');
 
   // add points for rater mean
   svg1_1.selectAll("dot")
@@ -148,30 +149,35 @@ d3.csv(data_file, function(error, data) {
     .attr("fill", "none")
     .style("stroke", "url(#" + gradient_id1_1 + ")")
     .attr("stroke-width", "5px")
-    // .attr("stroke-width", "13px")
     .style("opacity", 0.2)
     .attr("d", rater_line1)
     .on("mouseenter", function() {
       d3.select(this)
         .style("opacity", 1)
+
+        // get coordinates for rater box display
+        // first get offset by comparing content mouse coordinate with frame mouse coordinate
+        var scroll_offset_y = d3.event.pageY - d3.event.clientY;
+        var scroll_offset_x = d3.event.pageX - d3.event.clientX;
+        var matrix = this.getScreenCTM()
+                .translate(+ x(data[data.length - 1].time),
+                         + y(data[data.length - 1].eng1));
+
         div.transition()
           .duration(200)
           .style("opacity", 0.9);
-          div.html("<strong>rater 1</strong>")
-          .style("left", (width + "px"))
-          .style("top", (d3.event.pageY + 15 + "px"));
-          // .style("top", String(data[data.length - 1].eng1));
-          // .style("left", (width + "px"))
-          // .style("top", (d3.event.pageY + 15 + "px"));
+          div.html("<em>Rater 1</em>")
+          .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
+          .style("top", ((matrix.f + scroll_offset_y) + "px"))
     })
     .on("mouseleave", function() {
       d3.select(this)
-      .style("opacity", 0.2)
+        .style("opacity", 0.2)
       div.transition()
-        .duration(500)
+        // .duration(200)
         .style("opacity", 0);
     });
-    console.log(data[data.length - 1].eng1)
+
   // add points for rater 1
   // svg1_1.selectAll("dot")
   //     .data(data)
@@ -188,7 +194,7 @@ d3.csv(data_file, function(error, data) {
   //       div.transition()
   //         .duration(200)
   //         .style("opacity", 0.9);
-  //         div.html("<p><strong>Rater 1</strong></p><p>" + d.mood1 + " mood</p>")
+  //         div.html("<p><em>Rater 1</em></p><p>" + d.mood1 + " mood</p>")
   //         .style("left", (d3.event.pageX + "px"))
   //         .style("top", (d3.event.pageY + 15 + "px"));
   //     })
@@ -213,19 +219,28 @@ d3.csv(data_file, function(error, data) {
     .on("mouseenter", function() {
       d3.select(this)
         .style("opacity", 1)
+
+        // get coordinates for rater box display
+        // first get offset by comparing content mouse coordinate with frame mouse coordinate
+        var scroll_offset_y = d3.event.pageY - d3.event.clientY;
+        var scroll_offset_x = d3.event.pageX - d3.event.clientX;
+        // then get coordinates of last data point of line
+        var matrix = this.getScreenCTM()
+                .translate(+ x(data[data.length - 1].time),
+                         + y(data[data.length - 1].eng2));
+
         div.transition()
           .duration(200)
           .style("opacity", 0.9);
-          div.html("<strong>rater 2</strong>")
-          .style("left", (width + "px"))
-          .style("top", (d3.event.pageY + 15 + "px"));
-          // .style("top", (data[data.length - 1].eng2));
+          div.html("<em>Rater 2</em>")
+          .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
+          .style("top", ((matrix.f + scroll_offset_y) + "px"))
     })
     .on("mouseleave", function() {
       d3.select(this)
-      .style("opacity", 0.2)
+        .style("opacity", 0.2)
       div.transition()
-        .duration(500)
+        // .duration(200)
         .style("opacity", 0);
     });
 
@@ -245,7 +260,7 @@ d3.csv(data_file, function(error, data) {
   //       div.transition()
   //         .duration(200)
   //         .style("opacity", .9);
-  //         div.html("<p><strong>Rater 2</strong></p><p>" + d.mood2 + " mood</p>")
+  //         div.html("<p><em>Rater 2</em></p><p>" + d.mood2 + " mood</p>")
   //         .style("left", (d3.event.pageX + "px"))
   //         .style("top", (d3.event.pageY + 15 + "px"));
   //     })
@@ -270,19 +285,28 @@ d3.csv(data_file, function(error, data) {
         .on("mouseenter", function() {
           d3.select(this)
             .style("opacity", 1)
+
+            // get coordinates for rater box display
+            // first get offset by comparing content mouse coordinate with frame mouse coordinate
+            var scroll_offset_y = d3.event.pageY - d3.event.clientY;
+            var scroll_offset_x = d3.event.pageX - d3.event.clientX;
+            // then get coordinates of last data point of line
+            var matrix = this.getScreenCTM()
+                    .translate(+ x(data[data.length - 1].time),
+                             + y(data[data.length - 1].eng3));
+
             div.transition()
               .duration(200)
               .style("opacity", 0.9);
-              div.html("<strong>rater 3</strong>")
-              .style("left", (width + "px"))
-              .style("top", (d3.event.pageY + 15 + "px"));
-              // .style("top", (data[data.length - 1].eng2));
+              div.html("<em>Rater 3</em>")
+              .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
+              .style("top", ((matrix.f + scroll_offset_y) + "px"))
         })
         .on("mouseleave", function() {
           d3.select(this)
-          .style("opacity", 0.2)
+            .style("opacity", 0.2)
           div.transition()
-            .duration(500)
+            // .duration(200)
             .style("opacity", 0);
         });
 
@@ -302,7 +326,7 @@ d3.csv(data_file, function(error, data) {
       //       div.transition()
       //         .duration(200)
       //         .style("opacity", .9);
-      //         div.html("<p><strong>Rater 3</strong></p><p>" + d.mood3 + " mood</p>")
+      //         div.html("<p><em>Rater 3</em></p><p>" + d.mood3 + " mood</p>")
       //         .style("left", (d3.event.pageX + "px"))
       //         .style("top", (d3.event.pageY + 15 + "px"));
       //     })

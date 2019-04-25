@@ -129,6 +129,14 @@ d3.csv(data_file, function(error, data) {
           div.html("<p><strong>TJ: </strong>Feels like you're being a little harsh.</p><p><strong>RD:</strong> Thanks, good note. I was going for extremely harsh, I'll turn it up.</p>")
           .style("left", (d3.event.pageX + "px"))
           .style("top", (d3.event.pageY + 15 + "px"));
+
+          var matrix = this.getScreenCTM()
+                  .translate(+this.getAttribute("cx"),
+                           +this.getAttribute("cy"));
+
+          console.log(d3.event.pageY + 15 + "px");
+          console.log(matrix);
+
       })
       .on("mouseout", function(d) {
         d3.select(this)

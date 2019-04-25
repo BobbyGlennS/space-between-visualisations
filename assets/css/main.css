@@ -2962,14 +2962,16 @@ div.tooltip {
   text-align: left;
   width: 100px;
   height: auto;
-  padding: 10px;
+  padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 300;
   color: #FFFFFF;
   background: #000000;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 4px;
   pointer-events: none;
   opacity: 0;
 }
@@ -2982,6 +2984,13 @@ div.tooltip p{
 div.tooltip strong{
   font-weight: 700;
   font-size: 12;
+	color: #FFF;
+}
+
+div.tooltip em{
+  font-weight: 500;
+  font-size: 12;
+	font-style: normal;
 	color: #FFF;
 }
 
