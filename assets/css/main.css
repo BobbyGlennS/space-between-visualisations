@@ -3014,6 +3014,10 @@ div.tooltip br{
   font-size: 14px;
 }
 
+.axisWhite text {
+  font-size: 0px;
+}
+
 .axisLabel {
 	fill: #333;
 	font-weight: 500;
