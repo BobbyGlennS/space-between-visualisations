@@ -124,12 +124,21 @@ d3.csv(data_file, function(error, data) {
       .attr("offset", function(d) { return d.offset; })
       .attr("stop-color", function(d) { return colour(d.mood3); });
 
+    // create background dots to round off edges of line
+    svg1_1.selectAll("dot")
+        .data(data)
+      .enter().append("circle")
+        .attr("fill", "url(#" + gradient_id1_0 + ")")
+        .attr("r", 6)
+        .attr("cx", function(d) { return x(d.time)})
+        .attr("cy", function(d) { return y(d.engagement_mean)})
+
   // Add path for rater mean
   svg1_1.append("path")
     .data([data])
     .attr("fill", "none")
     .style("stroke", "url(#" + gradient_id1_0 + ")")
-    .attr("stroke-width", "13px")
+    .attr("stroke-width", "12px")
     .style("opacity", 1)
     .attr("d", rater_line_mean)
     // .attr('filter', 'url(#dropShadow)');
