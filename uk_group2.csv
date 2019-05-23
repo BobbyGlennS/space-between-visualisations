@@ -1,25 +1,94 @@
-unit,time,engagement_mean,mood_mean,mood_colour,offset,laughter_start,laughter_duration,type_colour,mood1,mood2,mood3,mood4,eng1,eng2,eng3,eng4
-0,00:00,3.75,5.3,#A8D600,0%,00:13,1,#F59100,5,4,6,6,4,4,4,3
-15,00:15,5.5,4.2,#F1E300,5.17%,00:18,1,#FFE600,3,4,4,6,6,7,4,5
-23,00:23,3.75,4.5,#DDDF00,7.93%,02:09,7,#FF0000,4,4,5,5,3,5,4,3
-62,01:02,3.75,4.5,#DDDF00,21.38%,02:51,13,#F59100,4,4,5,5,4,2,5,4
-76,01:16,4.5,4.8,#C9DC00,26.21%,03:32,2,#F59100,3,4,5,7,5,5,4,4
-110,01:50,3.75,5,#BCD900,37.93%,03:39,2,#FFE600,4,5,6,5,3,3,4,5
-121,02:01,4,5.2,#AED700,41.72%,03:52,3,#009900,6,6,5,3,2,3,5,6
-137,02:17,4,3.8,#FDD800,47.24%,04:16,2,#FFE600,3,4,4,4,4,4,4,4
-143,02:23,4.75,4.5,#DDDF00,49.31%,04:41,3,#FFE600,3,4,5,6,3,4,5,7
-137,02:30,2.75,4,#FFE600,47.24%,04:42,7,#FF0000,4,4,3,5,2,2,3,4
-164,02:44,1.25,3.8,#FDD800,56.55%,0,-20,,2,4,4,5,1,1,1,2
-168,02:48,1.5,4,#FFE600,57.93%,0,-20,,4,3,3,6,1,1,2,2
-171,02:51,6.25,3.8,#FDD800,58.97%,0,-20,,2,3,4,6,6,6,6,7
-185,03:05,4,3.8,#FDD800,63.79%,0,-20,,3,4,4,5,2,2,5,7
-187,03:07,6.75,2.2,#F85D00,64.48%,0,-20,,2,2,2,3,7,7,7,6
-196,03:16,5,5,#BCD900,67.59%,0,-20,,5,4,5,6,3,5,5,7
-205,03:25,4,4.2,#F1E300,70.69%,0,-20,,2,5,5,5,3,3,4,6
-210,03:30,4.25,4,#FFE600,72.41%,0,-20,,2,3,5,6,4,3,7,3
-213,03:33,6,4.5,#DDDF00,73.45%,0,-20,,3,3,6,6,5,6,7,6
-226,03:46,5.75,4.8,#C9DC00,77.93%,0,-20,,3,3,6,7,5,6,8,4
-238,03:58,5,4.5,#DDDF00,82.07%,0,-20,,4,5,6,3,4,3,7,6
-249,04:09,4,5,#BCD900,85.86%,0,-20,,4,4,6,6,4,4,4,4
-267,04:27,5.5,6,#54B700,92.07%,0,-20,,5,5,6,8,4,5,5,8
-290,04:50,3.5,5.5,#90CD00,100%,0,-20,,5,5,6,6,2,3,4,5
+unit,time,engagement_mean,mood_mean,offset,laughter_start,laughter_duration,type_colour,mood1,mood2,mood3,mood4,eng1,eng2,eng3,eng4,utterance
+0,00:00,3.75,5.3,0%,00:13,1,#F59100,5,4,6,6,4,4,4,3,"<p><strong>V8:</strong> there's not much of a linear progression to these personal...
+</p><p><strong>V6:</strong> er no
+</p><p><strong>V7:</strong> was the programme beginning, did J come out of that?
+</p><p><strong>V10:</strong> no, it came out of J.
+</p><p><strong>V8:</strong> laughing "
+15,00:15,5.5,4.2,5.17%,00:18,1,#FFE600,3,4,4,6,6,7,4,5,"<p><strong>V6:</strong> if anything...
+</p><p><strong>V10:</strong> J wrote the bid.
+</p><p><strong>V6:</strong> J wrote the bid
+</p><p><strong>V7:</strong> Oh ok
+</p><p><strong>V5:</strong> just for..
+</p><p><strong>V8:</strong> I'm finding it a bit weird [speech unclear]"
+23,00:23,3.75,4.5,7.93%,02:09,7,#FF0000,4,4,5,5,3,5,4,3,"<p><strong>V6:</strong> yes, and it is fair to say there was a huge amount of J personally, er... and strongly personally, in the bid, rather than a huge amount of Locality, in fact.
+</p><p><strong>V8:</strong> hmmm.
+</p><p><strong>V6:</strong> And that reflected on her quite maverick relationship with Locality, which was legitimate, you know, legitimised at Locality, it was accepted, um, but it was hers, it literally was hers.
+</p><p><strong>V7:</strong> hmm
+</p><p><strong>V6:</strong> And, she kind of took N and I along with her on that.  "
+62,01:02,3.75,4.5,21.38%,02:51,13,#F59100,4,4,5,5,4,2,5,4,"<p><strong>V8:</strong> When did the accreditation hub become... ?
+</p><p><strong>V7:</strong> it was after
+</p><p><strong>V9:</strong> yes after
+</p><p><strong>V7:</strong> after I'd finished being a community organiser, it wasn't that long ago was it?  "
+76,01:16,4.5,4.8,26.21%,03:32,2,#F59100,3,4,5,7,5,5,4,4,"<p><strong>V6:</strong> But this is a CO Ltd
+</p><p><strong>V10:</strong> that's the VTP accreditation, isn't it?
+</p><p><strong>V6:</strong> well yes, but the accreditation hub for the VTP kind of came after the programme had ended, because we, S was, I mean I think you were kind of getting involved [to v5] in the same way you were getting involved with the training?
+</p><p><strong>V9:</strong> yea
+</p><p><strong>V6:</strong> um, but it was, it didn't burgeon until the end of the programme, really, right at the end
+</p><p><strong>V10:</strong> last 6 months
+</p><p><strong>V6:</strong> yeah last 6 months "
+110,01:50,3.75,5,37.93%,03:39,2,#FFE600,4,5,6,5,3,3,4,5,"<p><strong>V10:</strong> so, the director of training kind of comes here somewhere...
+</p><p><strong>V6:</strong> the director-of-training is probably with N
+</p><p><strong>V10:</strong> yeah
+</p><p><strong>V6:</strong> or around there.  "
+121,02:01,4,5.2,41.72%,03:52,3,#009900,6,6,5,3,2,3,5,6,"<p><strong>V6:</strong> Do we need ... anybody else?
+</p><p><strong>V10:</strong> Do we have to?
+</p><p><strong>V6:</strong> ... from um... I'm just asking the question
+</p><p><strong>V10:</strong> I suppose we could na-, I suppose the same way we have Locality, we could have Regenerate, couldn't we?
+</p><p><strong>V9:</strong> Do we? Do we? Sorry. "
+137,02:17,4,3.8,47.24%,04:16,2,#FFE600,3,4,4,4,4,4,4,4,<p><strong>V6:</strong> It's one of the things obviously about that and our organisations and how we identify with them
+143,02:23,4.75,4.5,49.31%,04:41,3,#FFE600,3,4,5,6,3,4,5,7,"<p><strong>V8:</strong> do you want to put it up here?
+</p><p><strong>V10:</strong> Don't want to put it up, suppose I could put it down there
+</p><p><strong>V8:</strong> Down here, next to Locality  "
+137,02:30,2.75,4,47.24%,04:42,7,#FF0000,4,4,3,5,2,2,3,4,"<p><strong>V6:</strong> is that at the end once we get to kind of here'ish, the people that to an outsider they would think 'Regenerate' were no longer with Regenerate
+All: hmmmm
+</p><p><strong>V6:</strong> they were... individuals."
+164,02:44,1.25,3.8,56.55%,0,-20,,2,4,4,5,1,1,1,2,Extended silence ' several seconds.
+168,02:48,1.5,4,57.93%,0,-20,,4,3,3,6,1,1,2,2,<p><strong>V8:</strong> or right there maybe? [quiet]
+171,02:51,6.25,3.8,58.97%,0,-20,,2,3,4,6,6,6,6,7,"<p><strong>V6:</strong> could we have a big bomb?
+</p><p><strong>V9:</strong> laughs
+</p><p><strong>V8:</strong> big bomb?
+</p><p><strong>V9:</strong> chuckling
+</p><p><strong>V6:</strong> I'm talking not literally
+</p><p><strong>V8:</strong> oh for goodness sake
+</p><p><strong>V10:</strong> what, a picture of a bomb
+</p><p><strong>V9:</strong> with the psshhh [making sound of a fuse]
+</p><p><strong>V6:</strong> for action camp number 2..</p>
+<p><strong>V9 & 8:</strong> laughing </p>"
+185,03:05,4,3.8,63.79%,0,-20,,3,4,4,5,2,2,5,7,<p><strong>V7:</strong> can I have a paper?...
+187,03:07,6.75,2.2,64.48%,0,-20,,2,2,2,3,7,7,7,6,"<p><strong>V10:</strong> ok, so we're not naming names but we probably just should. So ... I'm going to just write K- and A- in there... [sound of writing] "
+196,03:16,5,5,67.59%,0,-20,,5,4,5,6,3,5,5,7,"<p><strong>V7:</strong> And it could, we could add action camp 2 because that was a
+</p><p><strong>V6:</strong> turning point
+</p><p><strong>V7:</strong> yea, and again it was a kind of entity, like...  "
+205,03:25,4,4.2,70.69%,0,-20,,2,5,5,5,3,3,4,6,Silence
+210,03:30,4.25,4,72.41%,0,-20,,2,3,5,6,4,3,7,3,"<p><strong>V10:</strong> I just put myself on top of them</p>
+<p><strong>V9:</strong> chuckling</p> "
+213,03:33,6,4.5,73.45%,0,-20,,3,3,6,6,5,6,7,6,"<p><strong>V8:</strong> there you go, there's your bomb
+</p><p><strong>V6:</strong> thank you, I didn't mean that sort of bomb actually, I meant more ripples...
+</p><p><strong>V8:</strong> well you can do your own bomb
+</p><p><strong>V8:</strong>(V9 laughs) that the bomb I envisioned, I envisioned that bomb  "
+226,03:46,5.75,4.8,77.93%,0,-20,,3,3,6,7,5,6,8,4,"<p><strong>V6:</strong> what did I want?
+</p><p><strong>V8:</strong> you wanted to call your fashion business something violent
+</p><p><strong>V6:</strong> Fashion and Firebombs,
+</p><p><strong>V8:</strong> yea, yea
+</p><p><strong>V6:</strong> and it became Style & Sedition
+</p><p><strong>V8:</strong> good
+</p><p><strong>V6:</strong> after H2's intervention
+</p><p><strong>V8:</strong> Quaker feedback
+Laughter "
+238,03:58,5,4.5,82.07%,0,-20,,4,5,6,3,4,3,7,6,"<p><strong>V8 + V6:</strong> eerrrmmm
+</p><p><strong>V6:</strong> I'm not sure it's the right place cos we haven't covered that event, but, it's here...
+Silence "
+249,04:09,4,5,85.86%,0,-20,,4,4,6,6,4,4,4,4,"<p><strong>V8:</strong> so the few that are kind of along the, I mean so we've got Regenerate here because it's become more H1
+</p><p><strong>V10:</strong> well, in the same way as there's two H1s because there's the DoT for Regenerate, and then there's H1.
+</p><p><strong>V8:</strong> yea, yea, over there
+</p><p><strong>V10:</strong> somewhere over here, yeah "
+267,04:27,5.5,6,92.07%,0,-20,,5,5,6,8,4,5,5,8,"<p><strong>V7:</strong> that's quite interesting cos while I look at this I think I don't recognise any of this, cos like
+</p><p><strong>V8:</strong> yea
+</p><p><strong>V7:</strong> and and then it's like H1's escaped, like...
+</p><p><strong>V10:</strong> and she did
+</p><p><strong>V10:</strong> ... d'you know what I mean, that's it. And then, I like that. There's this this bomb's happened and then
+Lots of laughter
+</p><p><strong>V10:</strong> then there's people, you know ... organisation, and then people
+</p><p><strong>V9:</strong> laughing "
+290,04:50,3.5,5.5,100%,0,-20,,5,5,6,6,2,3,4,5,"<p><strong>V8:</strong> .....   [unclear] is over here
+</p><p><strong>V6:</strong> it's R ... herself... but uh [sighing] "

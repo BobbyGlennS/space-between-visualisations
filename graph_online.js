@@ -126,6 +126,7 @@ d3.csv(data_file, function(error, data) {
         div.transition()
           .duration(200)
           .style("opacity", .9)
+          .style("width", "250px")
           div.html(d.utterance)
           .style("left", (d3.event.pageX + "px"))
           .style("top", (d3.event.pageY + 15 + "px"));

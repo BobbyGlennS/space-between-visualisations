@@ -193,7 +193,8 @@ d3.csv(data_file, function(error, data) {
 
         div.transition()
           .duration(200)
-          .style("opacity", 0.9);
+          .style("opacity", 0.9)
+          .style("width", "100px");
           div.html("<em>Rater 1</em>")
           .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
           .style("top", ((matrix.f + scroll_offset_y) + "px"))
@@ -259,7 +260,8 @@ d3.csv(data_file, function(error, data) {
 
         div.transition()
           .duration(200)
-          .style("opacity", 0.9);
+          .style("opacity", 0.9)
+          .style("width", "100px");
           div.html("<em>Rater 2</em>")
           .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
           .style("top", ((matrix.f + scroll_offset_y) + "px"))
@@ -325,7 +327,8 @@ d3.csv(data_file, function(error, data) {
 
           div.transition()
             .duration(200)
-            .style("opacity", 0.9);
+            .style("opacity", 0.9)
+            .style("width", "100px");
             div.html("<em>Rater 3</em>")
             .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
             .style("top", ((matrix.f + scroll_offset_y) + "px"))
@@ -387,11 +390,12 @@ d3.csv(data_file, function(error, data) {
             // then get coordinates of last data point of line
             var matrix = this.getScreenCTM()
                     .translate(+ x(data[data.length - 1].time),
-                             + y(data[data.length - 1].eng3));
+                             + y(data[data.length - 1].eng4));
 
             div.transition()
               .duration(200)
-              .style("opacity", 0.9);
+              .style("opacity", 0.9)
+              .style("width", "100px");
               div.html("<em>Rater 4</em>")
               .style("left", ((matrix.e + scroll_offset_x + 10) + "px"))
               .style("top", ((matrix.f + scroll_offset_y) + "px"))

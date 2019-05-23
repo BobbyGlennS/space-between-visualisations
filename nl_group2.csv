@@ -1,10 +1,64 @@
-unit,time,engagement_mean,mood_mean,mood_colour,offset,laughter_start,laughter_duration,type_colour,mood1,mood2,mood3,eng1,eng2,eng3
-0,00:00,7,5,#BCD900,0%,00:03,3,#0A5609,5,6,4,8,7,6
-17,00:17,4.3,4,#FFE600,5.88%,02:45,5,#A8D600,4,4,4,4,5,4
-66,01:06,5.3,4,#FFE600,22.84%,0,-20,,5,3,4,6,5,5
-97,01:37,4.6,4.6,#D6DE00,33.56%,0,-20,,5,5,4,5,4,5
-153,02:33,4.3,5.3,#A8D600,52.94%,0,-20,,4,3,5,6,4,3
-180,03:00,4.3,3.6,#FBCB00,62.28%,0,-20,,4,4,3,4,4,5
-198,03:18,6.3,5.6,#84C800,68.51%,0,-20,,5,6,6,7,6,6
-260,04:20,5.3,5,#BCD900,89.97%,0,-20,,5,4,6,5,4,7
-289,04:49,5.6,5,#BCD900,100%,0,-20,,5,6,4,6,7,4
+unit,time,engagement_mean,mood_mean,offset,laughter_start,laughter_duration,type_colour,mood1,mood2,mood3,eng1,eng2,eng3,utterance
+0,00:00,7,5,0%,00:03,3,#0A5609,5,6,4,8,7,6,"<p><strong>V21:</strong> oh isn't it beautiful
+[Laughter]"
+17,00:17,4.3,4,5.88%,02:45,5,#A8D600,4,4,4,4,5,4,"<p><strong>V18:</strong> hmmm yeah, oh yes that can too.
+</p><p><strong>V19:</strong> Yes, for me it's a bit difficult. What have I done as school? My colleagues and other personneI who live in the neighborhood
+</p><p><strong>V18:</strong> hmm
+</p><p><strong>V19:</strong> have taken part in the training programme. I have a supporting role for the neighborhood committee. People from that committee have also become more active, and I
+</p><p><strong>V20:</strong> yes
+</p><p><strong>V19:</strong> Yes, I support the initiatives and I listen to what people say. "
+66,01:06,5.3,4,22.84%,0,-20,,5,3,4,6,5,5,"<p><strong>V21:</strong> Where should we place the school? Do you think the school is really part of the neighborhood?
+</p><p><strong>V19:</strong> In terms of its social function, the school is in the neighborhood, yes
+</p><p><strong>V21:</strong> Yes. so maybe we put another circle here with your name in it?
+</p><p><strong>V18:</strong> I think that you're more in the neighborhood than B1, E or myself.
+</p><p><strong>V20:</strong> You connect with a large part of the people living there.
+</p><p><strong>V21:</strong>  yes... [missing text]"
+97,01:37,4.6,4.6,33.56%,0,-20,,5,5,4,5,4,5,"<p><strong>V19:</strong> Yes, but not all...
+</p><p><strong>V21:</strong> [missing text]
+</p><p><strong>V19:</strong> some of the neighborhood inhabitants don't have children at our school. They are just inhabitants in the neighborhood.
+</p><p><strong>V21:</strong> yes exactly of course
+</p><p><strong>V19:</strong> But they have done the training and are affected by the spreading of ideas and networks.
+</p><p><strong>V21:</strong> yup
+</p><p><strong>V19:</strong> The school board doesn't have anything to do with it, in the way that you do. But teachers and parents
+</p><p><strong>V21:</strong> the school certainly does
+</p><p><strong>V19:</strong> in that sense the school does. ... you should put WW, yes, and then. Plus, as an organization
+</p><p><strong>V18:</strong> hmm hmm
+</p><p><strong>V19:</strong> we have contacts and discussions and, yes with"
+153,02:33,4.3,5.3,52.94%,0,-20,,4,3,5,6,4,3,"<p><strong>V21:</strong> And did you know B2?
+</p><p><strong>V17:</strong> hmm, yes, from the Center
+</p><p><strong>V19:</strong> yes, yes, no, no, no, no, yes
+</p><p><strong>V17:</strong> or your face is familiar to me
+</p><p><strong>V19:</strong> hmm?
+</p><p><strong>V17:</strong>  at least your face is familiar to me ... [laughing]
+</p><p><strong>V18:</strong> [laughing]
+[Laughter]
+</p><p><strong>V17:</strong> yes
+</p><p><strong>V19:</strong> yes, but that can also be from a party or
+</p><p><strong>V20:</strong> yes from something"
+180,03:00,4.3,3.6,62.28%,0,-20,,4,4,3,4,4,5,"<p><strong>V21:</strong> Shall I draw a link?
+</p><p><strong>V17:</strong> yes
+</p><p><strong>V18:</strong> Yes
+</p><p><strong>V21:</strong>  from your name to here, so?
+</p><p><strong>V18:</strong> do.    But we don't know each other via Inkr8 but rather through the Regional Office... but it makes no difference
+</p><p><strong>V21:</strong> it's in the network
+</p><p><strong>V18:</strong> yes"
+198,03:18,6.3,5.6,68.51%,0,-20,,5,6,6,7,6,6,"<p><strong>V17:</strong> I'm connected with this office and this office and this office
+</p><p><strong>V18:</strong> yes
+</p><p><strong>V17:</strong> and you know Alliance and B1 and you're connected with the local council, and Almere
+</p><p><strong>V21:</strong> [sounds of drawing] - and who else?
+</p><p><strong>V18:</strong> and also there's the network in"
+260,04:20,5.3,5,89.97%,0,-20,,5,4,6,5,4,7,"<p><strong>V21:</strong> Are there other partners we need to include?
+</p><p><strong>V18:</strong> yes
+</p><p><strong>V20:</strong> Yes Inkracht [inaudible text] with whom we also have had contact.
+</p><p><strong>V21:</strong> Other important parties, for example the Police?
+</p><p><strong>V19:</strong> The Schoren?
+</p><p><strong>V18:</strong> Yes, there's also contact with the Schoren.
+</p><p><strong>V21:</strong> Is the Schoren in the neighborhood or outside it?
+</p><p><strong>V17:</strong> On the outside
+</p><p><strong>V18:</strong> on the outside, yes"
+289,04:49,5.6,5,100%,0,-20,,5,6,4,6,7,4,"<p><strong>V18:</strong> They also work with the Kade and share workers
+</p><p><strong>V20:</strong> yes
+</p><p><strong>V19:</strong> And they also have a representative in...
+</p><p><strong>V18:</strong> yes, exactly
+</p><p><strong>V21:</strong> And what is the name..?
+</p><p><strong>V17:</strong> L  "

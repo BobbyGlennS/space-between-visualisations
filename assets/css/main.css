@@ -2960,7 +2960,7 @@ input, select, textarea {
 div.tooltip {
   position: absolute;
   text-align: left;
-  width: 150px;
+  width: 250px;
   height: auto;
   padding-left: 10px;
 	padding-right: 10px;
