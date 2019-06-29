@@ -3062,3 +3062,13 @@ div.tooltip br{
   /* left: 300px; */
 	left: 6.5em;
 }
+
+#method_img{
+	float: none;
+	width: 80%;
+	height: auto;
+	margin-left: 25%;
+	margin-right: auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
